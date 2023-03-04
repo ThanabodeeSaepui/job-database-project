@@ -28,4 +28,4 @@ yarn-error.log*
 # build
 
 dist
-apps/api/app.js
+apps/api/index.js

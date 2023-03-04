@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"pnpm tsc --watch --preserveWatchOutput\" \"nodemon -q app.js\"",
+    "dev": "concurrently \"pnpm tsc --watch --preserveWatchOutput\" \"nodemon -q index.js\"",
     "build": "pnpm tsc",
-    "start": "node app.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
