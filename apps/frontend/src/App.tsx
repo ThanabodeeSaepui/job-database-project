@@ -1,11 +1,22 @@
-import * as React from 'react'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css'
 
 function App() {
+  const [data, setData] = useState<String | any>("");
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get('http://localhost:3000');
+      setData(result.data);
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="App">
-      Front Page
+      <h1>Front Page</h1>
+      <p>Testing API : {data}</p>
     </div>
   )
 }

@@ -12,9 +12,6 @@
         "dist/**"
       ]
     },
-    "lint": {
-      "outputs": []
-    },
     "dev": {
       "cache": false
     }
