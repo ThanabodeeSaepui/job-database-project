@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"pnpm tsc --watch --preserveWatchOutput\" \"nodemon -q index.js\"",
-    "build": "pnpm tsc",
+    "dev": "concurrently \"tsc --watch --preserveWatchOutput\" \"nodemon -q index.js\"",
+    "build": "tsc",
     "start": "node index.js"
   },
   "keywords": [],
