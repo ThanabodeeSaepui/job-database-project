@@ -26,6 +26,8 @@ yarn-error.log*
 .turbo
 
 # build
-
 dist
-apps/api/index.js
+*.js
+
+#env
+.env
