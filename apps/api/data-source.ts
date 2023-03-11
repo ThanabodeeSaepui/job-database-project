@@ -3,7 +3,7 @@ import Job from "./entitiy/Job";
 import Company from "./entitiy/Company";
 import { DataSource } from "typeorm";
 import * as dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: "../../.env" });
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -19,6 +19,6 @@ export const AppDataSource = new DataSource({
 
 AppDataSource.initialize()
   .then(() => {
-    // here you can start to work with your database
+    console.log("DataSource connection initialize");
   })
   .catch((error) => console.log(error));

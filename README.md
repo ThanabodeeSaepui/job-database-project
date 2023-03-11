@@ -12,7 +12,17 @@
 ### Requirement
 
 - [Node.js](https://nodejs.org/en/)
-- Node Package Manager (NPM, [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable), [PNPM](https://pnpm.io/installation))
+- Package Manager (NPM, [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable), [PNPM](https://pnpm.io/installation))
+
+### Environment Variable Setup
+
+create .env file in repository
+
+```env
+DB_NAME=<Your database Name>
+DB_USERNAME=<Your admin username>
+DB_PASSWORD=<Your admin password>
+```
 
 ### Install Package with
 
