@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import Job from "./Job";
 
 @Entity()
 export default class Company {
   @PrimaryGeneratedColumn()
-  company_id: number;
+  id: number;
 
   @Column("text")
   company_name: string;
@@ -16,4 +17,7 @@ export default class Company {
 
   @Column("text")
   description: string;
+
+  @OneToMany(() => Job, (Job) => Job.company)
+  Jobs: Job[];
 }

@@ -2,7 +2,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToOne,
+  ManyToOne,
   JoinColumn,
 } from "typeorm";
 import Category from "./Category";
@@ -11,7 +11,7 @@ import Company from "./Company";
 @Entity()
 export default class Job {
   @PrimaryGeneratedColumn()
-  job_id: number;
+  id: number;
 
   @Column("text")
   job_name: string;
@@ -22,11 +22,11 @@ export default class Job {
   @Column("integer")
   avail_seat: number;
 
-  @OneToOne(() => Category)
+  @ManyToOne(() => Category, (category) => category.Jobs)
   @JoinColumn()
   category: Category;
 
-  @OneToOne(() => Company)
+  @ManyToOne(() => Company, (company) => company.Jobs)
   @JoinColumn()
   company: Company;
 }
