@@ -2,16 +2,15 @@ import Category from "./entitiy/Category";
 import Job from "./entitiy/Job";
 import Company from "./entitiy/Company";
 import { DataSource } from "typeorm";
-import * as dotenv from "dotenv";
-dotenv.config({ path: "../../.env" });
+import { env } from "./environment-var";
 
 export const SQLDataSource = new DataSource({
   type: "postgres",
   host: "localhost",
   port: 5432,
-  username: process.env.SQL_DB_USERNAME,
-  password: process.env.SQL_DB_PASSWORD,
-  database: process.env.SQL_DB_NAME,
+  username: env.PG_DB_USERNAME,
+  password: env.PG_DB_PASSWORD,
+  database: env.PG_DB_NAME,
   entities: [Category, Job, Company],
   synchronize: false, // !! change to false when production
   logging: false,

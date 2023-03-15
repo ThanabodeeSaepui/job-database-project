@@ -1,8 +1,10 @@
 import "reflect-metadata";
 import { SQLDataSource } from "./data-source";
 import { MongoClient } from "mongodb";
-const uri = "mongodb://127.0.0.1:27017";
-const dbName = "job_db_dev";
+import { env } from "./environment-var";
+
+const uri = env.MONGODB_URL || "mongodb://127.0.0.1:27017";
+const dbName = env.MONGODB_DATABASE;
 
 import Category from "./entitiy/Category";
 import Job from "./entitiy/Job";

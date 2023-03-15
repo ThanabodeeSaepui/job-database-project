@@ -21,9 +21,12 @@
 create .env file in repository
 
 ```env
-DB_NAME=<Your database Name>
-DB_USERNAME=<Your admin username>
-DB_PASSWORD=<Your admin password>
+PG_DB_NAME=<Your PGdatabase Name>
+PG_DB_USERNAME=<Your PGadmin username>
+PG_DB_PASSWORD=<Your PGadmin password>
+
+MONGODB_URL=<MongoDB Url>
+MONGODB_DATABASE=<MongoDB Database Name>
 ```
 
 ### Install Package with
