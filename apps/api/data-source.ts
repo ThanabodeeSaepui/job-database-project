@@ -9,9 +9,9 @@ export const SQLDataSource = new DataSource({
   type: "postgres",
   host: "localhost",
   port: 5432,
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  username: process.env.SQL_DB_USERNAME,
+  password: process.env.SQL_DB_PASSWORD,
+  database: process.env.SQL_DB_NAME,
   entities: [Category, Job, Company],
   synchronize: false, // !! change to false when production
   logging: false,
