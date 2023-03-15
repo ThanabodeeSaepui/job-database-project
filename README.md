@@ -13,6 +13,8 @@
 
 - [Node.js](https://nodejs.org/en/)
 - Package Manager (NPM, [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable), [PNPM](https://pnpm.io/installation))
+- [PostgreSQL](https://www.postgresql.org/download/)
+- [MongoDB](https://www.mongodb.com/try/download/community)
 
 ### Environment Variable Setup
 

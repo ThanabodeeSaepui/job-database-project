@@ -5,7 +5,7 @@ import { DataSource } from "typeorm";
 import * as dotenv from "dotenv";
 dotenv.config({ path: "../../.env" });
 
-export const AppDataSource = new DataSource({
+export const SQLDataSource = new DataSource({
   type: "postgres",
   host: "localhost",
   port: 5432,
@@ -13,11 +13,11 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [Category, Job, Company],
-  synchronize: true, // !! change to false when production
+  synchronize: false, // !! change to false when production
   logging: false,
 });
 
-AppDataSource.initialize()
+SQLDataSource.initialize()
   .then(() => {
     console.log("DataSource connection initialize");
   })

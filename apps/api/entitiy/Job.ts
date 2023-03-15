@@ -23,10 +23,10 @@ export default class Job {
   avail_seat: number;
 
   @ManyToOne(() => Category, (category) => category.Jobs)
-  @JoinColumn()
+  @JoinColumn({ name: "category_id" })
   category: Category;
 
   @ManyToOne(() => Company, (company) => company.Jobs)
-  @JoinColumn()
+  @JoinColumn({ name: "company_id" })
   company: Company;
 }

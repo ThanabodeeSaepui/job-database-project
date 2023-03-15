@@ -1,7 +1,10 @@
 import "reflect-metadata";
-import { AppDataSource } from "./data-source";
+import { SQLDataSource } from "./data-source";
+
 import Category from "./entitiy/Category";
 import Job from "./entitiy/Job";
+import Company from "./entitiy/Company";
+
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
 
@@ -14,17 +17,28 @@ app.get("/api", (req: Request, res: Response) => {
 });
 
 app.get("/api/categories", async (req: Request, res: Response) => {
-  const category = await AppDataSource.manager.find(Category);
-  res.send(category);
+  const categories = await SQLDataSource.manager.find(Category);
+  res.send(categories);
+});
+
+app.get("/api/companies", async (req: Request, res: Response) => {
+  const companies = await SQLDataSource.manager.find(Company);
+  res.send(companies);
 });
 
 app.get("/api/jobs", async (req: Request, res: Response) => {
-  const job = await AppDataSource.manager.find(Job);
-  res.send(job);
+  const jobs = await SQLDataSource.manager
+    .createQueryBuilder(Job, "job")
+    .limit(10)
+    .innerJoinAndSelect("job.category", "category")
+    .innerJoinAndSelect("job.company", "company")
+    .select(["job", "category", "company.id", "company.company_name"])
+    .getMany();
+  res.send(jobs);
 });
 
 app.get("/api/job/:id", async (req: Request, res: Response) => {
-  const job = await AppDataSource.manager
+  const job = await SQLDataSource.manager
     .createQueryBuilder(Job, "job")
     .leftJoinAndSelect("job.category", "category")
     .where("job.id = :id", { id: req.params.id })
