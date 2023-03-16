@@ -18,6 +18,6 @@ export const SQLDataSource = new DataSource({
 
 SQLDataSource.initialize()
   .then(() => {
-    console.log("DataSource connection initialize");
+    console.log("SQL DataSource connection initialize");
   })
   .catch((error) => console.log(error));

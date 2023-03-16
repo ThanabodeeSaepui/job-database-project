@@ -1320,15 +1320,6 @@ ALTER TABLE ONLY public.company
 
 
 --
--- TOC entry 3207 (class 2606 OID 16551)
--- Name: job job_description; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.job
-    ADD CONSTRAINT job_description UNIQUE (job_description);
-
-
---
 -- TOC entry 3208 (class 2606 OID 16508)
 -- Name: job FK_ab0702755e36375136d7b54207f; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
