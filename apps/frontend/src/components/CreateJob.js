@@ -4,7 +4,7 @@ const CreateJob=()=>{
     return (
         <div>
             <Navbar/>
-            <div class="container">
+            <div class="container p-3">
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Category</label>
                     <select class="form-select" aria-label="Default select example">

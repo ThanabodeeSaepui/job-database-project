@@ -4,8 +4,12 @@ const Description=()=>{
     return (
         <div>
             <Navbar/>
-            <div className="container">
-                <h1>Description Page</h1>
+            <div class="container p-3">
+                <div class="text-center">
+                    <h1>ชื่อบริษัท</h1>
+                </div>
+                <p>ตำแหน่ง :</p>
+                <p>Description :</p>
             </div>
         </div>
     )

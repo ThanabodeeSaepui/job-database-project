@@ -4,7 +4,7 @@ const CreateCompany=()=>{
     return (
         <div>
             <Navbar/>
-            <div class="container">
+            <div class="container p-3">
                 <form>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">ชื่อบริษัท</label>

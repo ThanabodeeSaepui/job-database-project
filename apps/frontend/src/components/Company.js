@@ -4,8 +4,13 @@ const Company=()=>{
     return (
         <div>
             <Navbar/>
-            <div className="container">
-                <h1>Company Page</h1>
+            <div class="container p-3">
+                <div class="text-center">
+                    <h1>ชื่อบริษัท</h1>
+                </div>
+                <p>Address :</p>
+                <p>Contact :</p>
+                <p>Description :</p>
             </div>
         </div>
     )
