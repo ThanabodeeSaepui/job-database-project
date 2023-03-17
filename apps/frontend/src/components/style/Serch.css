@@ -1,0 +1,17 @@
+.box-serch {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 1090px;
+    height: 300px;
+    padding: 20px;
+    background: rgba(153, 153, 153, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0 5px 15px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+#btn-delete-edit {
+    padding-top: 21%;
+    padding-left: 80%;
+}
