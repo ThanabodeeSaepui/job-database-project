@@ -15,11 +15,16 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 import { getPage } from "./utils";
+import { Repository } from "typeorm";
 
 const app: Express = express();
 app.use(bodyParser.json());
 app.use(cors());
 const port = 8080;
+
+const JobRepository: Repository<Job> = SQLDataSource.getRepository(Job);
+const CompanyRepository: Repository<Company> =
+  SQLDataSource.getRepository(Company);
 
 app.get("/api", (req: Request, res: Response) => {
   res.send("Hello World!");
@@ -83,17 +88,12 @@ app.post("/api/sql/companies", async (req: Request, res: Response) => {
 app.put("/api/sql/companies/:id", async (req: Request, res: Response) => {
   const body = req.body;
   try {
-    const result = await SQLDataSource.manager
-      .createQueryBuilder()
-      .update(Company)
-      .set({
-        company_name: body.company_name,
-        address: body.address,
-        contact: body.contact,
-        description: body.description,
-      })
-      .where("company.id = :id", { id: req.params.id })
-      .execute();
+    const result = await CompanyRepository.update(req.params.id, {
+      company_name: body.company_name,
+      address: body.address,
+      contact: body.contact,
+      description: body.description,
+    });
     res.send(result);
   } catch (error) {
     res.send(error);
@@ -163,16 +163,11 @@ app.post("/api/sql/jobs", async (req: Request, res: Response) => {
 app.put("/api/sql/jobs/:id", async (req: Request, res: Response) => {
   const body = req.body;
   try {
-    const result = await SQLDataSource.manager
-      .createQueryBuilder()
-      .update(Job)
-      .set({
-        // job_name: body.job_name,
-        // job_description: body.job_description,
-        // avail_seat: body.avail_seat
-      })
-      .where("jobs.id = :id", { id: req.params.id })
-      .execute();
+    const result = await JobRepository.update(req.params.id, {
+      job_name: body.job_name,
+      job_description: body.job_description,
+      avail_seat: body.avail_seat,
+    });
     res.send(result);
   } catch (error) {
     res.send(error);
