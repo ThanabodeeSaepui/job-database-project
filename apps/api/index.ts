@@ -14,6 +14,8 @@ import express, { Express, Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
+import { getPage } from "./utils";
+
 const app: Express = express();
 app.use(bodyParser.json());
 app.use(cors());
@@ -40,10 +42,12 @@ app.get("/api/sql/categories/:id", async (req: Request, res: Response) => {
 
 // Read all
 app.get("/api/sql/companies", async (req: Request, res: Response) => {
-  const page =
-    Number(req.query.page) > 0 ? Math.floor(Number(req.query.page)) : 1;
+  const page = getPage(req.query.page);
+  const category = req.query.category;
+
   const companies = await SQLDataSource.manager
     .createQueryBuilder(Company, "company")
+    //.where()
     .skip((page - 1) * 10)
     .take(10)
     .getMany();
@@ -59,18 +63,56 @@ app.get("/api/sql/companies/:id", async (req: Request, res: Response) => {
   res.send(company);
 });
 
+app.post("/api/sql/companies", async (req: Request, res: Response) => {
+  const body = req.body;
+  try {
+    const result = await SQLDataSource.manager.save(Company, {
+      company_name: body.company_name,
+      address: body.address,
+      contact: body.contact,
+      description: body.description,
+    });
+    res.send(result);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+// Update
+app.put("/api/sql/companies/:id", async (req: Request, res: Response) => {
+  const body = req.body;
+  try {
+    const result = await SQLDataSource.manager
+      .createQueryBuilder()
+      .update(Company)
+      .set({
+        company_name: body.company_name,
+        address: body.address,
+        contact: body.contact,
+        description: body.description,
+      })
+      .where("company.id = :id", { id: req.params.id })
+      .execute();
+    res.send(result);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 // Read all
 app.get("/api/sql/jobs", async (req: Request, res: Response) => {
-  const page =
-    Number(req.query.page) > 0 ? Math.floor(Number(req.query.page)) : 1;
+  const page = getPage(req.query.page);
+  const category = String(req.query.category).replace("_", " ");
   const jobs = await SQLDataSource.manager
     .createQueryBuilder(Job, "job")
     .innerJoinAndSelect("job.category", "category")
     .innerJoinAndSelect("job.company", "company")
+    // .where("job.category = :category", { category: category })
     .select(["job", "category", "company.id", "company.company_name"])
     .skip((page - 1) * 10)
     .take(10)
     .getMany();
+
   res.send(jobs);
 });
 
@@ -91,10 +133,30 @@ app.post("/api/sql/jobs", async (req: Request, res: Response) => {
     const result = await SQLDataSource.manager.save(Job, {
       job_name: body.job_name,
       job_description: body.job_description,
-      avail_seat: Number(body.avail_seat || 0),
+      avail_seat: body.avail_seat || "ไม่ระบุ",
       company: { id: Number(body.company_id) },
       category: { id: Number(body.category_id) },
     });
+    res.send(result);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+// Update
+app.put("/api/sql/jobs/:id", async (req: Request, res: Response) => {
+  const body = req.body;
+  try {
+    const result = await SQLDataSource.manager
+      .createQueryBuilder()
+      .update(Job)
+      .set({
+        // job_name: body.job_name,
+        // job_description: body.job_description,
+        // avail_seat: body.avail_seat
+      })
+      .where("jobs.id = :id", { id: req.params.id })
+      .execute();
     res.send(result);
   } catch (error) {
     res.send(error);

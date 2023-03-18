@@ -12,7 +12,7 @@ export const SQLDataSource = new DataSource({
   password: env.PG_DB_PASSWORD,
   database: env.PG_DB_NAME,
   entities: [Category, Job, Company],
-  synchronize: false, // !! change to false when production
+  synchronize: true, // !! change to false when production
   logging: false,
 });
 

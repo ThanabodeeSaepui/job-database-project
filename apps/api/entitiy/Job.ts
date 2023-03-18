@@ -19,8 +19,8 @@ export default class Job {
   @Column("text")
   job_description: string;
 
-  @Column("integer")
-  avail_seat: number;
+  @Column("text")
+  avail_seat: string;
 
   @ManyToOne(() => Category, (category) => category.Jobs)
   @JoinColumn({ name: "category_id" })

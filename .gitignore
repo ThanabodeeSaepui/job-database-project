@@ -27,7 +27,7 @@ yarn-error.log*
 
 # build
 dist
-apps/api/*.js
+apps/api/**.js
 
 #env
 .env
