@@ -49,13 +49,14 @@ app.get("/api/sql/categories/:id", async (req: Request, res: Response) => {
 app.get("/api/sql/companies", async (req: Request, res: Response) => {
   const page = getPage(req.query.page);
   const category = req.query.category;
-
-  const companies = await SQLDataSource.manager
-    .createQueryBuilder(Company, "company")
-    //.where()
-    .skip((page - 1) * 10)
-    .take(10)
-    .getMany();
+  const companies = await CompanyRepository.find({
+    select: {
+      id: true,
+      company_name: true,
+    },
+    skip: (page - 1) * 10,
+    take: 10,
+  });
   res.send(companies);
 });
 
@@ -119,16 +120,26 @@ app.delete("/api/sql/companies/:id", async (req: Request, res: Response) => {
 app.get("/api/sql/jobs", async (req: Request, res: Response) => {
   const page = getPage(req.query.page);
   const category = String(req.query.category).replace("_", " ");
-  const jobs = await SQLDataSource.manager
-    .createQueryBuilder(Job, "job")
-    .innerJoinAndSelect("job.category", "category")
-    .innerJoinAndSelect("job.company", "company")
-    // .where("job.category = :category", { category: category })
-    .select(["job", "category", "company.id", "company.company_name"])
-    .skip((page - 1) * 10)
-    .take(10)
-    .getMany();
-
+  const jobs = await JobRepository.find({
+    select: {
+      id: true,
+      job_name: true,
+      job_description: true,
+      avail_seat: true,
+      company: {
+        company_name: true,
+      },
+      category: {
+        category_name: true,
+      },
+    },
+    relations: {
+      company: true,
+      category: true,
+    },
+    skip: (page - 1) * 10,
+    take: 10,
+  });
   res.send(jobs);
 });
 
