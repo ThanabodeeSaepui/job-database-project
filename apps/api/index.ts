@@ -15,7 +15,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 import { getPage, queryToString } from "./utils";
-import { Repository, Like } from "typeorm";
+import { Repository, Raw } from "typeorm";
 
 const app: Express = express();
 app.use(bodyParser.json());
@@ -123,12 +123,12 @@ app.get("/api/sql/jobs", async (req: Request, res: Response) => {
   const category = queryToString(req.query.category);
   const company = queryToString(req.query.company);
   const filter = {
-    job_name: Like(`%${job}%`),
+    job_name: Raw((alias) => `LOWER(${alias}) Like '%${job}%'`),
     company: {
-      company_name: Like(`%${company}%`),
+      company_name: Raw((alias) => `LOWER(${alias}) Like '%${company}%'`),
     },
     category: {
-      category_name: Like(`%${category}%`),
+      category_name: Raw((alias) => `LOWER(${alias}) Like '%${category}%'`),
     },
   };
   const jobs = await JobRepository.find({

@@ -3,5 +3,5 @@ export const getPage = (page: String | undefined | any) => {
 };
 
 export const queryToString = (text: String | undefined | any) => {
-  return text !== undefined ? String(text).replace("_", " ") : "";
+  return text !== undefined ? String(text).replace("_", " ").toLowerCase() : "";
 };
