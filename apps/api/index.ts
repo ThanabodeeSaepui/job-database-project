@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { SQLDataSource } from "./data-source";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import { env } from "./environment-var";
 
 const uri = env.MONGODB_URL || "mongodb://127.0.0.1:27017";
@@ -30,6 +30,8 @@ app.get("/api", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
+// ===============================Postgres SQL===============================
+// ================Category================
 // Read all
 app.get("/api/sql/categories", async (req: Request, res: Response) => {
   const categories = await SQLDataSource.manager.find(Category);
@@ -45,6 +47,7 @@ app.get("/api/sql/categories/:id", async (req: Request, res: Response) => {
   res.send(category);
 });
 
+// ================Company================
 // Read all
 app.get("/api/sql/companies", async (req: Request, res: Response) => {
   const page = getPage(req.query.page);
@@ -116,6 +119,7 @@ app.delete("/api/sql/companies/:id", async (req: Request, res: Response) => {
   }
 });
 
+// ================Job================
 // Read all
 app.get("/api/sql/jobs", async (req: Request, res: Response) => {
   const page = getPage(req.query.page);
@@ -212,29 +216,34 @@ app.delete("/api/sql/jobs/:id", async (req: Request, res: Response) => {
   }
 });
 
+// ===============================MongoDB===============================
+// ================Job================
+// Read All
 app.get("/api/nosql/jobs", async (req: Request, res: Response) => {
+  const page = getPage(req.query.page);
   const client = new MongoClient(uri);
   await client.connect();
   const db = client.db(dbName);
-  const collection = await db.collection("Job").find({}).toArray();
+  const collection = await db
+    .collection("Job")
+    .find({})
+    .skip((page - 1) * 10)
+    .limit(10)
+    .toArray();
   await client.close();
   res.status(200).send(collection);
 });
 
-app.post("/api/nosql/jobs", async (req: Request, res: Response) => {
-  const body = req.body;
+// Read by id
+app.get("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
   const client = new MongoClient(uri);
   await client.connect();
-  await client.db(dbName).collection("Job").insertOne({
-    job_name: body.job_name,
-    job_description: body.job_description,
-    avail_seat: body.avail_seat,
-  });
+  const db = client.db(dbName);
+  const collection = await db
+    .collection("Job")
+    .findOne({ _id: new ObjectId(req.params.id) });
   await client.close();
-  res.status(200).send({
-    status: "ok",
-    message: "Job is created",
-  });
+  res.status(200).send(collection);
 });
 
 app.listen(port, () => {
