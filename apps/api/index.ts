@@ -14,8 +14,8 @@ import express, { Express, Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
-import { getPage } from "./utils";
-import { Repository } from "typeorm";
+import { getPage, queryToString } from "./utils";
+import { Repository, Like } from "typeorm";
 
 const app: Express = express();
 app.use(bodyParser.json());
@@ -54,8 +54,8 @@ app.get("/api/sql/companies", async (req: Request, res: Response) => {
       id: true,
       company_name: true,
     },
-    skip: (page - 1) * 10,
-    take: 10,
+    // skip: (page - 1) * 10,
+    // take: 10,
   });
   res.send(companies);
 });
@@ -119,7 +119,18 @@ app.delete("/api/sql/companies/:id", async (req: Request, res: Response) => {
 // Read all
 app.get("/api/sql/jobs", async (req: Request, res: Response) => {
   const page = getPage(req.query.page);
-  const category = String(req.query.category).replace("_", " ");
+  const job = queryToString(req.query.job);
+  const category = queryToString(req.query.category);
+  const company = queryToString(req.query.company);
+  const filter = {
+    job_name: Like(`%${job}%`),
+    company: {
+      company_name: Like(`%${company}%`),
+    },
+    category: {
+      category_name: Like(`%${category}%`),
+    },
+  };
   const jobs = await JobRepository.find({
     select: {
       id: true,
@@ -137,6 +148,7 @@ app.get("/api/sql/jobs", async (req: Request, res: Response) => {
       company: true,
       category: true,
     },
+    where: filter,
     skip: (page - 1) * 10,
     take: 10,
   });
