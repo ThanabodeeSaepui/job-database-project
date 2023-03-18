@@ -26,7 +26,10 @@ export default class Job {
   @JoinColumn({ name: "category_id" })
   category: Category;
 
-  @ManyToOne(() => Company, (company) => company.Jobs)
+  @ManyToOne(() => Company, (company) => company.Jobs, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "company_id" })
   company: Company;
 }

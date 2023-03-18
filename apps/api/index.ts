@@ -63,6 +63,7 @@ app.get("/api/sql/companies/:id", async (req: Request, res: Response) => {
   res.send(company);
 });
 
+// Create
 app.post("/api/sql/companies", async (req: Request, res: Response) => {
   const body = req.body;
   try {
@@ -92,6 +93,21 @@ app.put("/api/sql/companies/:id", async (req: Request, res: Response) => {
         description: body.description,
       })
       .where("company.id = :id", { id: req.params.id })
+      .execute();
+    res.send(result);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+// Delete
+app.delete("/api/sql/companies/:id", async (req: Request, res: Response) => {
+  try {
+    const result = await SQLDataSource.manager
+      .createQueryBuilder()
+      .delete()
+      .from(Company)
+      .where("id = :id", { id: req.params.id })
       .execute();
     res.send(result);
   } catch (error) {
@@ -156,6 +172,21 @@ app.put("/api/sql/jobs/:id", async (req: Request, res: Response) => {
         // avail_seat: body.avail_seat
       })
       .where("jobs.id = :id", { id: req.params.id })
+      .execute();
+    res.send(result);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+// Delete
+app.delete("/api/sql/jobs/:id", async (req: Request, res: Response) => {
+  try {
+    const result = await SQLDataSource.manager
+      .createQueryBuilder()
+      .delete()
+      .from(Job)
+      .where("id = :id", { id: req.params.id })
       .execute();
     res.send(result);
   } catch (error) {
