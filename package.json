@@ -19,5 +19,9 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.13"
+  }
 }
