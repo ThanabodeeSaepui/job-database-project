@@ -3,43 +3,52 @@ import Footer from "./Footer";
 import "./style/Homepage.css";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import { useState } from 'react'
+// import { useQuery } from "react-query";
+import axios from 'axios'
 
-const Homepage=()=>{
-    // for (let i = 0; i < company.length; i++)
-    // {
-    //     console.log
-    // }
-    const company_name = company.map(item => item.company_name)
-    //console.log(company.map(item => item.company_name))
+const Homepage = () => {
+    const [companies, setCompanies] = useState({})
+
+    axios.get("http://localhost:8080/api/sql/companies").then((res) => {
+        res.data.forEach((obj) => {
+            obj.label = obj.company_name
+            delete obj.company_name
+        })
+        setCompanies(res.data);
+        }
+    )
+    
     return (
         <div>
             <Navbar/>
             <div>
                 <div className="box">
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">ประเภทงาน</label>
-                        <select class="form-select" aria-label="Default select example">
+                    <div className="mb-3">
+                        <label for="exampleFormControlTextarea1" className="form-label">ประเภทงาน</label>
+                        <select className="form-select" aria-label="Default select example">
                             <option selected>กรุณาเลือกประเภทงานที่สนใจ</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="217" >Accounting</option>
+                            <option value="237" >Electrical Engineering</option>
+                            <option value="257" >Civil Engineering</option>
+                            <option value="263" >Civil Computer Engineering</option>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">ชื่อตำแหน่ง</label>
-                        <TextField id="filled-basic" label="กรุณาเลือกตำแหน่งที่สนใจ" variant="filled" />
+                    <div className="mb-3">
+                        <label for="exampleFormControlTextarea1" className="form-label">ชื่อตำแหน่ง</label>
+                        <input className="form-control" type="text" placeholder="กรุณาเลือกตำแหน่งที่สนใจ"/>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">ชื่อบริษัท</label>
+                    <div className="mb-3">
+                        <label for="exampleFormControlTextarea1" className="form-label">ชื่อบริษัท</label>
                         <Autocomplete
                         disablePortal
                         id="combo-box-demo"
-                        options={company_name}
+                        options={companies}
                         sx={{ width: 300 }}
                         renderInput={(params) => <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />}
                         />
                     </div>
-                    <button type="submit" class="btn btn-primary">ค้นหา</button>
+                    <button type="submit" className="btn btn-primary">ค้นหา</button>
                 </div>
 
                 <div className="box1">
@@ -61,78 +70,5 @@ const Homepage=()=>{
         </div>
     )
 }
-
-const company = [
-    {
-        "id": 111,
-        "company_name": "Smart Home (Thailand) Co.,Ltd.",
-        "address": "71/5 พหลโยธิน 32 (เสนานิคม 1) ซอย9\nแขวงเสนานิคม เขตจตุจักร กรุงเทพมหานคร 10900\nโทรศัพท์ : 062-706-1283\n",
-        "contact": "Smart Home (Thailand) Co.,Ltd.\nแฟกซ์ : 02-579-3903\nเว็บไซต์ : https://www.smarthome-thailand.com/\n",
-        "description": "บริษัทเราดำเนินธุรกิจเกี่ยวกับระบบ Home Automation แบบครบวงจร ตั้งแต่รับปรึกษา ออกแบบ จำหน่ายอุปกรณ์ ติดตั้งและเซอร์วิส ปัจจุบันทางเรากำลังขยายงานจึงต้องการบุคคลากรเพิ่มเป็นจำนวนมาก\n\nตัวอย่างโครงการที่ทางเรากำลังดำเนินติดตั้ง\n- The Icon Siam Superlux Condominium\n- Four Seasons Private Residence\n- Chiva-Som Health resort&hotel Huahin"
-    },
-    {
-        "id": 124,
-        "company_name": "บริษัท เอ็นพีเอส แอคเคาท์ติ้ง จำกัด",
-        "address": "28/64 หมู่บ้านนลินอเวนิว ถ.รามคำแหง\nแขวงราษฎร์พัฒนา เขตสะพานสูง กรุงเทพมหานคร 10240\nโทรศัพท์ : 064-594-4944\n",
-        "contact": "บริษัท เอ็นพีเอส แอคเคาท์ติ้ง จำกัด\n",
-        "description": "สำนักงานบัญชี ที่ทำงานกันด้วยระบบพี่น้อง ทำงานกันเป็นทีม มีการอบรมและพัฒนาความรู้ให้กับพนักงานอย่างสม่ำเสมอ และดูแลลูกค้าด้วยความใส่ใจ ละเอียด และรอบคอบ ซึ่งงานบริการ มีดังนี้\n1.จัดทำบัญชีและภาษีอากร ทั้งแบบรายเดือน และรายปี \n2.จัดทำรายงานภาษี สรุปภาษี และรายละเอียดประกอบงบการเงิน\n3.บริการสอบบัญชี\n4.บริการด้านประกันสังคม\n5.บริการเกี่ยวกับงานทะเบียนต่างๆ\n6.บริการวางแผนภาษี\nึ7.บริการวางระบบบัญชี "
-    },
-    {
-        "id": 136,
-        "company_name": "บริษัท แลนดี้ โฮม (ประเทศไทย) จำกัด",
-        "address": "",
-        "contact": "",
-        "description": "ดำเนินธุรกิจรับสร้างบ้านบนที่ดิน โดยการพัฒนาผลิตภัณฑ์ด้านเทคโนโลยีการก่อสร้างบ้านที่ทันสมัยสร้างสรรค์ผลงานที่มีคุณภาพโดยทีมงานมืออาชีพ และผู้เชี่ยวชาญในด้านการก่อสร้าง ภายใต้ระบบบริหารคุณภาพ ISO 9001 : 2015  อีกทั้งยึดมั่นและเสริมสร้างความสัมพันธ์อันดีต่อผู้บริโภคและความรับผิดชอบที่มีต่อสังคมส่วนรวม \n"
-    },
-    {
-        "id": 148,
-        "company_name": "บริษัท คอมฟอร์ท แมกซ์ จำกัด",
-        "address": "176 ซอยกาญจนาภิเษก 5\nแขวงหลักสอง เขตบางแค กรุงเทพมหานคร 10160\nโทรศัพท์ : 065-505-6444\n",
-        "contact": "บริษัท คอมฟอร์ท แมกซ์ จำกัด\nแฟกซ์ : 02-802-9474\nเว็บไซต์ : https://www.platinumfac.com, http://www.property-d.com, https://factoryyard.co.th/, https://www.facebook.com/The-excapital-HOTEL-648770175594191/?ti=as, https://www.facebook.com/KIN.Rehabilitation/?ti=as\n LINE ID: comfortmaxx\n",
-        "description": "ประกอบกิจการประเภทการเช่าและการดำเนินการเกี่ยวกับการพัฒนาอสังหาริมทรัพย์ที่เป็นแนว  Factory สร้างบ้าน พัฒนาที่ดิน โรงแรม resort และอื่นๆ\nwww.Platinumfac.com\nwww.Property-D.com\nwww.parkfac.com\n\nเป็นนักพัฒนาอสังหาริมทรัพย์ในนาม แฟคทอรี่ ยาร์ด\nwww.Factoryyard.co.th\n\nมีบริษัทในเครือ ทำธุรกิจหลายหลาก\nเช่น ตัวแทนจำหน่ายสินค้าทั่วประเทศ ในนาม บริษัท วิคเตอร์ มาร์เก็ตติ้ง จำกัด WWW.VictorM.COM"
-    },
-    {
-        "id": 166,
-        "company_name": "Planet Communications Asia Public Co., Ltd.",
-        "address": "157 ซอยรามอินทรา 34 ถนนรามอินทรา\nแขวงท่าแร้ง เขตบางเขน กรุงเทพมหานคร 10230\nโทรศัพท์ : 02-792-2435\n",
-        "contact": "Planet Communications Asia Public Co., Ltd.\nแฟกซ์ : 02-792-2499\nเว็บไซต์ : http://www.planetcomm.com/\n",
-        "description": "แพลนเน็ตคอม (PlanetComm) เป็นบริษัทมหาชน ที่จดทะเบียนในตลาดหลักทรัพย์แห่งประเทศไทย (mai) ตั้งแต่ปี 2557ใช้ชื่อย่อ “PCA” ภายใต้กลุ่มเทคโนโลยี  เป็นผู้นำทางด้านนวัตกรรมเทคโนโลยี่สื่อสารโทรคมนาคม อาทิ Satcom, Wireless, IP Network, IP PBX, VIDEO CONFERENCE และ Digital Broadcast จำหน่ายให้กับ บริษัทชั้นนำ หน่วยงานราชการ  และสถานีโทรทัศน์ ซึ่งมีชื่อเสียงและความมั่นคงสูง ยอดขายประมาณปีละ 1000 ล้านบาท กำลังขยายงานต้องการรับสมัครผู้ร่วมงานที่รักความก้าวหน้าและมีความสามารถมาร่วมงาน ดังนี้"
-    },
-    {
-        "id": 112,
-        "company_name": "บริษัท ที เทรด (ไทยแลนด์) จำกัด",
-        "address": "107/11 เอกชัย  บางบอนเหนือ ซอยรางโพธิ์ ถนนพรหมราษฎร์\nแขวงบางบอนเหนือ เขตบางบอน กรุงเทพมหานคร 10150\nโทรศัพท์ : 099-183-6077\n",
-        "contact": "บริษัท ที เทรด (ไทยแลนด์) จำกัด\n LINE ID: tl200865\n",
-        "description": "บริษัทขายสินค้าประเภท เครื่องครัว ของใช้ภายในบ้าน ของใช้เบ็ดเตล็ด และของใช้ภายในบ้าน ต้องการรับสมัครพนักงานที่มีประสบการณ์ มีความขยัน ตั้งใจทำงาน มีความรับผิดชอบสูง"
-    },
-    {
-        "id": 125,
-        "company_name": "Bangkok Percussion Co., Ltd.",
-        "address": "392 หมู่ที่ 10\nตำบลคลองมะเดื่อ อำเภอกระทุ่มแบน จังหวัดสมุทรสาคร 74110\nโทรศัพท์ : 080-080-4616\n",
-        "contact": "Bangkok Percussion Co., Ltd.\n",
-        "description": "บริษัท บางกอกเพอคัสชั่น จำกัด ผู้ผลิตและส่งออกสินค้าประเภทเครื่องดนตรีมาเป็นเวลามากกว่า 40 ปีภายใต้แบรนด์ MEINL ประเทศเยอรมนี"
-    },
-    {
-        "id": 138,
-        "company_name": "บริษัท ไทยแลนด์ แอนทราไซท์ จำกัด และบริษัทในเครือ",
-        "address": "สำนักงานใหญ่ 240/40 อาคารอโยธยาทาวเวอร์ ชั้น 20 ถนนรัชดาภิเษก\nแขวงห้วยขวาง เขตห้วยขวาง กรุงเทพมหานคร 10310\nโทรศัพท์ : 02-274-1455 ต่อ 503, 098-654-2511, 080-684-4569\n",
-        "contact": "บริษัท ไทยแลนด์ แอนทราไซท์ จำกัด และบริษัทในเครือ\nเว็บไซต์ : http://www.thailandanthracite.com, http://www.easternpearl.co.th, http://berkanapower.com/\n",
-        "description": "บริษัท ไทยแลนด์ แอนทราไซท์ จำกัด และบริษัทในเครือ เป็นผู้นำด้านถ่านหินและเชื้อเพลิงชีวมวลมานานกว่า 30 ปี บริษัทมีการเจริญเติบโตอย่างต่อเนื่องจนปัจจุบัน ด้วยทุนจดทะเบียนรวมกว่า 200 ล้านบาท เรามุ่งเน้นการพัฒนาคุณภาพของสินค้า เพื่อการส่งมอบและการให้บริการที่มีมาตรฐาน เพื่อให้ลูกค้าได้รับสิ่งที่ดีที่สุด อีกทั้งยังคงรักษาจิตสึกนึก ความรับผิดชอบต่อสังคมและสิ่งแวดล้อม"
-    },
-    {
-        "id": 149,
-        "company_name": "บริษัท แลนด์ แอนด์ เฮ้าส์ จำกัด (มหาชน)",
-        "address": "เลขที่ 1 อาคารคิวเฮ้าส์ลุมพีนี ชั้นที่ 37-38 ถนนสาทรใต้\nแขวงทุ่งมหาเมฆ เขตสาทร กรุงเทพมหานคร 10120\nโทรศัพท์ : 064-945-3996\n",
-        "contact": "บริษัท แลนด์ แอนด์ เฮ้าส์ จำกัด (มหาชน)\nเว็บไซต์ : https://job.lh.co.th/th/job\n LINE ID: lhrecruitment\n",
-        "description": "เราเป็นหนึ่งในกลุ่มธุรกิจพัฒนาอสังหาริมทรัพย์ของประเทศ เรามอบที่อยู่อาศัยที่ดีและมีความสุขให้แก่ลูกค้า ที่ครบถ้วนและหลายหลาย และสำหรับคุณ นี่หมายถึงโอกาสการทำงานที่กว้างไกลและหลากหลาย\n\nนอกจากนี้ ชื่อเสียงของบริษัทฯ ที่ได้รับรางวัลระดับประเทศอย่างมากมาย คุณลองนึกภาพดูว่าคุณจะสามารถเรียนรู้อะไรได้บ้างจากบุคคลเหล่านี้ ที่มีทั้งทักษะ ความสามารถ และประสบการณ์จนทำให้ Land & Houses ได้รับการยกย่องชมเชยเช่นนี้\n\nและที่สำคัญที่สุด บริษัทฯ ได้มีการฝึกอบรมพนักงานในบริษัทฯ อย่างต่อเนี่อง หลักสูตรการฝึกอบรมจะจัดขึ้นให้สอดคล้องกับลักษณะการทำงานแต่ละหน่วยงาน เพื่อจะส่งผลการพัฒนาศักยภาพของพนักงานอย่างสม่ำเสมอ\n\nไม่ว่าสิ่งทีคุณกำลังหาอยู่คืออะไร เราเชื่อว่าคุณจะพบกับประสบการณ์ที่มีค่าจากการมาร่วมงานกับเรา"
-    },
-    {
-        "id": 167,
-        "company_name": "360 Quality Management Co., Ltd.",
-        "address": "เลขที่ 9 อาคาร G Tower Grand Rama 9 ชั้น 31  North Wing\nแขวงห้วยขวาง เขตห้วยขวาง กรุงเทพมหานคร 10310\nโทรศัพท์ : 063-487-7516\n",
-        "contact": "360 Quality Management Co., Ltd.\nเว็บไซต์ : http://www.360qm.co.th\n",
-        "description": "บริษัท สาม หก ศูนย์ ควอลิตี้ แมนเนจเม้นท์ เป็นบริษัทที่ดำเนินธุรกิจในด้านการสรรหาบุคคลากร เพื่อคัดสรรพนักงานเข้าปฎิบัติงานในบริษัทชั้นนำของประเทศ ด้วยทีมงานที่มีความเชี่ยวชาญด้านการสรรหาบุคคลากร ใน สายอาชีพ Finance , Accounting ,Sales , Business Development, Human Resource ,IT และตำแหน่งอื่นๆ \n\nโดยการคัดเลือกผู้สมัครงาน ตระหนักถึง คุณภาพ ความเหมาะสมกับ องค์กรลูกค้า  และความรวดเร็วในการให้บริการเป็นหลัก เพื่อลูกค้า จะได้คนตามเป้าหมาย เพื่อการดำเนินธุรกิจต่อไป \n\nซึ่งองค์กรชั้นนำ จากต่างประเทศ และ บริษัท ในไทย ไว้วางใจ ให้ทาง 360QM ได้สรรหาให้ตลอดมา"
-    }
-]
 
 export default Homepage;
