@@ -249,3 +249,59 @@ app.get("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
 app.listen(port, () => {
   console.log(`API listening on port ${port}`);
 });
+
+//Categories Read All
+app.get("/api/nosql/categories", async (req: Request, res: Response) => {
+  const page = getPage(req.query.page);
+  const client = new MongoClient(uri);
+  await client.connect();
+  const db = client.db(dbName);
+  const collection = await db
+    .collection("Category")
+    .find({})
+    .skip((page - 1) * 10)
+    .limit(10)
+    .toArray();
+  await client.close();
+  res.status(200).send(collection);
+});
+
+//Company Read all
+app.get("/api/nosql/companies", async (req: Request, res: Response) => {
+  const page = getPage(req.query.page);
+  const client = new MongoClient(uri);
+  await client.connect();
+  const db = client.db(dbName);
+  const collection = await db
+    .collection("Company")
+    .find({})
+    .skip((page - 1) * 10)
+    .limit(10)
+    .toArray();
+  await client.close();
+  res.status(200).send(collection);
+});
+
+//Read id Company
+app.get("/api/nosql/companies/:id", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
+  await client.connect();
+  const db = client.db(dbName);
+  const collection = await db
+    .collection("Company")
+    .findOne({ _id: new ObjectId(req.params.id) });
+  await client.close();
+  res.status(200).send(collection);
+});
+
+//Read id Category
+app.get("/api/nosql/categories/:id", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
+  await client.connect();
+  const db = client.db(dbName);
+  const collection = await db
+    .collection("Category")
+    .findOne({ _id: new ObjectId(req.params.id) });
+  await client.close();
+  res.status(200).send(collection);
+});
