@@ -161,11 +161,29 @@ app.get("/api/sql/jobs", async (req: Request, res: Response) => {
 
 // Read by id
 app.get("/api/sql/jobs/:id", async (req: Request, res: Response) => {
-  const job = await SQLDataSource.manager
-    .createQueryBuilder(Job, "job")
-    .leftJoinAndSelect("job.category", "category")
-    .where("job.id = :id", { id: req.params.id })
-    .getOne();
+  const job = await JobRepository.findOne({
+    where: {
+      id: Number(req.params.id),
+    },
+    select: {
+      id: true,
+      job_name: true,
+      job_description: true,
+      avail_seat: true,
+      company: {
+        id: true,
+        company_name: true,
+      },
+      category: {
+        id: true,
+        category_name: true,
+      },
+    },
+    relations: {
+      company: true,
+      category: true,
+    },
+  })
   res.send(job);
 });
 
