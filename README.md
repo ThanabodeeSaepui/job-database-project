@@ -70,6 +70,19 @@ yarn run build
 pnpm run build
 ```
 
+### Deploy
+
+```bash
+# With NPM
+npm run deploy
+
+# With Yarn
+yarn run deploy
+
+# With PNPM
+pnpm run deploy
+```
+
 ## สมาชิกกลุ่ม
 
 - ธนะศักดิ์ เมฆารัตนกุล (ริว) 6301012620049

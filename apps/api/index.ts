@@ -11,6 +11,7 @@ import Job from "./entitiy/Job";
 import Company from "./entitiy/Company";
 
 import express, { Express, Request, Response } from "express";
+import path from "path";
 import bodyParser from "body-parser";
 import cors from "cors";
 
@@ -20,15 +21,12 @@ import { Repository, Raw } from "typeorm";
 const app: Express = express();
 app.use(bodyParser.json());
 app.use(cors());
+
 const port = 8080;
 
 const JobRepository: Repository<Job> = SQLDataSource.getRepository(Job);
 const CompanyRepository: Repository<Company> =
   SQLDataSource.getRepository(Company);
-
-app.get("/api", (req: Request, res: Response) => {
-  res.send("Hello World!");
-});
 
 // ===============================Postgres SQL===============================
 // ================Category================
@@ -183,7 +181,7 @@ app.get("/api/sql/jobs/:id", async (req: Request, res: Response) => {
       company: true,
       category: true,
     },
-  })
+  });
   res.send(job);
 });
 
@@ -454,6 +452,11 @@ app.delete("/api/nosql/companies/:id", async (req: Request, res: Response) => {
     status: "ok",
     message: "Company is deleted",
   });
+});
+
+app.use(express.static(path.join(__dirname, "./public")));
+app.get("*", (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, "./public", "./index.html"));
 });
 
 app.listen(port, () => {

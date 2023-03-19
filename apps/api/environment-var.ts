@@ -1,4 +1,5 @@
 import * as dotenv from "dotenv";
-dotenv.config({ path: "../../.env" });
+import path from "path";
+dotenv.config({ path: path.join(__dirname, "../", "../", "../", ".env") });
 
 export const env = process.env;
