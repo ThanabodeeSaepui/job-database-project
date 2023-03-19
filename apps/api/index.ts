@@ -200,7 +200,7 @@ app.put("/api/sql/jobs/:id", async (req: Request, res: Response) => {
     res.send(error);
   }
 });
-
+//
 // Delete
 app.delete("/api/sql/jobs/:id", async (req: Request, res: Response) => {
   try {
@@ -218,15 +218,24 @@ app.delete("/api/sql/jobs/:id", async (req: Request, res: Response) => {
 
 // ===============================MongoDB===============================
 // ================Job================
-// Read All
+// Read All or Filter
 app.get("/api/nosql/jobs", async (req: Request, res: Response) => {
   const page = getPage(req.query.page);
+  const job = queryToString(req.query.job) || "";
+  const category = queryToString(req.query.category) || "";
+  const company = queryToString(req.query.company) || "";
   const client = new MongoClient(uri);
   await client.connect();
   const db = client.db(dbName);
+  const filter: any = {};
+  if (job) filter.job_name = { $regex: job, $options: "i" };
+  if (company)
+    filter["company.company_name"] = { $regex: company, $options: "i" };
+  if (category)
+    filter["category.category_name"] = { $regex: category, $options: "i" };
   const collection = await db
     .collection("Job")
-    .find({})
+    .find(filter)
     .skip((page - 1) * 10)
     .limit(10)
     .toArray();
@@ -246,9 +255,68 @@ app.get("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
   res.status(200).send(collection);
 });
 
-app.listen(port, () => {
-  console.log(`API listening on port ${port}`);
+//Create Job
+app.post("/api/nosql/jobs", async (req: Request, res: Response) => {
+  const body = req.body;
+  const client = new MongoClient(uri);
+  await client.connect();
+  await client.db(dbName).collection("Job").insertOne({
+    job_name: body.job_name,
+    job_description: body.job_description,
+    avail_seat: body.avail_seat,
+  });
+  await client.close();
+  res.status(200).send({
+    status: "ok",
+    message: "Job is created",
+  });
 });
+
+//Update Job
+app.put("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
+  const body = req.body;
+  const client = new MongoClient(uri);
+  console.log(body);
+  await client.connect();
+  await client
+    .db(dbName)
+    .collection("Job")
+    .updateOne(
+      { _id: new ObjectId(req.params.id) },
+      {
+        $set: {
+          company_name: body.company_name,
+          address: body.address,
+          contact: body.contact,
+          description: body.description,
+        },
+      }
+    );
+  await client.close();
+  res.status(200).send({
+    status: "ok",
+    message: "Job is update successfully",
+  });
+});
+
+//Delete Job
+app.delete("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
+  const body = req.body;
+  const client = new MongoClient(uri);
+  await client.connect();
+  await client
+    .db(dbName)
+    .collection("Job")
+    .deleteOne({
+      _id: new ObjectId(req.params.id),
+    });
+  res.status(200).send({
+    status: "ok",
+    message: "Job is deleted",
+  });
+});
+
+//====================Categories================================
 
 //Categories Read All
 app.get("/api/nosql/categories", async (req: Request, res: Response) => {
@@ -265,6 +333,20 @@ app.get("/api/nosql/categories", async (req: Request, res: Response) => {
   await client.close();
   res.status(200).send(collection);
 });
+//
+//Read id Category
+app.get("/api/nosql/categories/:id", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
+  await client.connect();
+  const db = client.db(dbName);
+  const collection = await db
+    .collection("Category")
+    .findOne({ _id: new ObjectId(req.params.id) });
+  await client.close();
+  res.status(200).send(collection);
+});
+
+//==================Company========================
 
 //Company Read all
 app.get("/api/nosql/companies", async (req: Request, res: Response) => {
@@ -294,14 +376,68 @@ app.get("/api/nosql/companies/:id", async (req: Request, res: Response) => {
   res.status(200).send(collection);
 });
 
-//Read id Category
-app.get("/api/nosql/categories/:id", async (req: Request, res: Response) => {
+//Create Company
+app.post("/api/nosql/companies", async (req: Request, res: Response) => {
+  const body = req.body;
   const client = new MongoClient(uri);
   await client.connect();
-  const db = client.db(dbName);
-  const collection = await db
-    .collection("Category")
-    .findOne({ _id: new ObjectId(req.params.id) });
+  await client.db(dbName).collection("Company").insertOne({
+    company_name: body.company_name,
+    address: body.address,
+    contact: body.contact,
+    description: body.description,
+  });
   await client.close();
-  res.status(200).send(collection);
+  res.status(200).send({
+    status: "ok",
+    message: "Company is created",
+  });
+});
+
+//Update Company
+app.put("/api/nosql/companies/:id", async (req: Request, res: Response) => {
+  const body = req.body;
+  const client = new MongoClient(uri);
+  console.log(body);
+  await client.connect();
+  await client
+    .db(dbName)
+    .collection("Company")
+    .updateOne(
+      { _id: new ObjectId(req.params.id) },
+      {
+        $set: {
+          company_name: body.company_name,
+          address: body.address,
+          contact: body.contact,
+          description: body.description,
+        },
+      }
+    );
+  await client.close();
+  res.status(200).send({
+    status: "ok",
+    message: "Company is update",
+  });
+});
+
+//Delete Company
+app.delete("/api/nosql/companies/:id", async (req: Request, res: Response) => {
+  const body = req.body;
+  const client = new MongoClient(uri);
+  await client.connect();
+  await client
+    .db(dbName)
+    .collection("Company")
+    .deleteOne({
+      _id: new ObjectId(req.params.id),
+    });
+  res.status(200).send({
+    status: "ok",
+    message: "Company is deleted",
+  });
+});
+
+app.listen(port, () => {
+  console.log(`API listening on port ${port}`);
 });
