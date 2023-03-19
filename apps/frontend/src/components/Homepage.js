@@ -41,11 +41,11 @@ const Homepage = () => {
                     <div className="mb-3">
                         <label for="exampleFormControlTextarea1" className="form-label">ชื่อบริษัท</label>
                         <Autocomplete
-                        disablePortal
-                        id="combo-box-demo"
-                        options={companies}
-                        sx={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />}
+                            disablePortal
+                            id="combo-box-demo"
+                            options={companies}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />}
                         />
                     </div>
                     <button type="submit" className="btn btn-primary">ค้นหา</button>
