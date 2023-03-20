@@ -24,6 +24,7 @@ create .env file in repository
 PG_DB_NAME=<Your PGdatabase Name>
 PG_DB_USERNAME=<Your PGadmin username>
 PG_DB_PASSWORD=<Your PGadmin password>
+PG_DB_HOSTNAME=localhost
 
 MONGODB_URL=<MongoDB Url>
 MONGODB_DATABASE=<MongoDB Database Name>
