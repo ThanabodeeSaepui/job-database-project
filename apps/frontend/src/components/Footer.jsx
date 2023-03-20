@@ -1,11 +1,7 @@
-import "./style/Footer.css"
+import "./style/Footer.css";
 
-const Footer=()=>{ 
-    return(
-        <div className="background-footer">
+const Footer = () => {
+  return <div className="background-footer"></div>;
+};
 
-        </div>
-        )
-    }
-
-    export default Footer;
+export default Footer;
