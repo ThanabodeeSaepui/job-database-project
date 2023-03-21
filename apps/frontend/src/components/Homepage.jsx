@@ -5,8 +5,11 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Homepage = () => {
+  const [options, setOptions] = useState([]);
+
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["todos"],
     queryFn: () => {
@@ -21,6 +24,12 @@ const Homepage = () => {
         });
     },
   });
+
+  useEffect(() => {
+    if (isLoading === false) {
+      setOptions(data);
+    }
+  }, [isLoading]);
 
   return (
     <div>
@@ -56,7 +65,7 @@ const Homepage = () => {
             <Autocomplete
               disablePortal
               id="combo-box-demo"
-              options={data}
+              options={options}
               sx={{ width: 300 }}
               renderInput={(params) => (
                 <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />

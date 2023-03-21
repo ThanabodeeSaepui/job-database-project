@@ -1,12 +1,14 @@
 import Navbar from "./Navbar";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Alert } from "@mui/material";
 
 const CreateJob = () => {
+  const [options, setOptions] = useState([]);
+
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["todos"],
     queryFn: () => {
@@ -21,6 +23,12 @@ const CreateJob = () => {
         });
     },
   });
+
+  useEffect(() => {
+    if (isLoading === false) {
+      setOptions(data);
+    }
+  }, [isLoading]);
 
   const [category, setCategory] = useState(null);
   const [company, setCompany] = useState(null);
@@ -44,11 +52,15 @@ const CreateJob = () => {
       company_id: company,
     });
     try {
-      let res = await axios.post("http://localhost:8080/api/sql/jobs", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let res = await axios.post(
+        "https://job-db-prod.onrender.com/api/sql/jobs",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (res.status === 200) {
         setJob_name("");
         setJob_description("");
@@ -90,7 +102,7 @@ const CreateJob = () => {
             isOptionEqualToValue={(option, value) => option.id === value.id}
             disablePortal
             id="combo-box-demo"
-            options={data}
+            options={options}
             sx={{ width: 300 }}
             onChange={(e, value) => setCompany(value.id)}
             renderInput={(params) => (
