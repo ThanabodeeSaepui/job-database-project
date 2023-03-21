@@ -1,4 +1,6 @@
 import Navbar from "./Navbar";
+
+import Container from '@mui/material/Container';
 import { useState } from "react";
 // import { useQuery } from 'react-query'
 import axios from "axios";
@@ -53,8 +55,8 @@ const CreateCompany = () => {
   return (
     <div>
       <Navbar />
-      <div className="container p-3">
-        <form>
+      <Container maxWidth="sm" sx={{mt:3}}>
+      <form>
           <div className="mb-3">
             {success && (
               <Alert severity="success">Success สร้างบริษัทสำเร็จ</Alert>
@@ -114,7 +116,7 @@ const CreateCompany = () => {
             เพิ่มบริษัท
           </button>
         </form>
-      </div>
+      </Container>
     </div>
   );
 };

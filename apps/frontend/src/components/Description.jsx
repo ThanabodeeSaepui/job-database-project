@@ -14,17 +14,17 @@ const Description = () => {
       <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 4, pb: 6 }}>
         <Typography
           component="h1"
-          variant="h3"
+          variant="h4"
           align="center"
           color="text.primary"
           gutterBottom
         >
           Pricing
         </Typography>
-        <Typography variant="h6" component="p">
+        <Typography variant="h7" component="p">
           ตำแหน่ง : 
         </Typography>
-        <Typography variant="h6" component="p">
+        <Typography variant="h7" component="p">
           รายละเอียด
         </Typography>
         <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:400, mt:2}}>

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -15,7 +14,7 @@ const Navbar = () => {
 
       <AppBar
         position="static"
-        color="default"
+        color="primary"
         elevation={0}
         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
@@ -26,7 +25,7 @@ const Navbar = () => {
           <nav>
             <Link
               variant="button"
-              color="text.primary"
+              color="inherit"
               href="/"
               sx={{ my: 1, mx: 1.5 }}
             >
@@ -34,7 +33,7 @@ const Navbar = () => {
             </Link>
             <Link
               variant="button"
-              color="text.primary"
+              color="inherit"
               href="/createjob"
               sx={{ my: 1, mx: 1.5 }}
             >
@@ -42,7 +41,7 @@ const Navbar = () => {
             </Link>
             <Link
               variant="button"
-              color="text.primary"
+              color="inherit"
               href="/createcompany"
               sx={{ my: 1, mx: 1.5 }}
             >
@@ -50,23 +49,23 @@ const Navbar = () => {
             </Link>
             <Link
               variant="button"
-              color="text.primary"
+              color="inherit"
               href="/description"
               sx={{ my: 1, mx: 1.5 }}
             >
               รายละเอียด
             </Link>
-            <Link
+            {/* <Link
               variant="button"
               color="text.primary"
               href="/serch"
               sx={{ my: 1, mx: 1.5 }}
             >
               ค้นหา
-            </Link>
+            </Link> */}
             <Link
               variant="button"
-              color="text.primary"
+              color="inherit"
               href="/company"
               sx={{ my: 1, mx: 1.5 }}
             >

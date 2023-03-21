@@ -1,4 +1,6 @@
 import Navbar from "./Navbar";
+
+import Container from '@mui/material/Container';
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useEffect, useState } from "react";
@@ -77,8 +79,8 @@ const CreateJob = () => {
   return (
     <div>
       <Navbar />
-      <div className="container p-3 mb-3">
-        {success && <Alert severity="success">Success โพสต์งานสำเร็จ</Alert>}
+      <Container maxWidth="sm" sx={{mt:3}}>
+      {success && <Alert severity="success">Success โพสต์งานสำเร็จ</Alert>}
         {fail && <Alert severity="error">Error ไม่สามารถโพสต์งานได้</Alert>}
         <from>
           <label for="exampleFormControlTextarea1" className="form-label">
@@ -147,7 +149,7 @@ const CreateJob = () => {
             โพสต์งาน
           </button>
         </from>
-      </div>
+      </Container>
     </div>
   );
 };

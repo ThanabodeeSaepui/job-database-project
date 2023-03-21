@@ -39,6 +39,12 @@ const Serch = (props) => {
     }
   }, [isLoading]);
 
+  // const handleDesciption = (e) => {
+  //   // console.log(fee);
+  //   e.preventDefault();
+  //   navigate('/description',{state:{job:job,category:category,company:company}})
+  // };
+
   return (
     <div>
       <Navbar />

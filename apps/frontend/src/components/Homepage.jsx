@@ -1,5 +1,6 @@
 import Navbar from "./Navbar";
 
+import Container from '@mui/material/Container';
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useQuery } from "@tanstack/react-query";
@@ -46,8 +47,8 @@ const Homepage = () => {
   return (
     <div>
       <Navbar />
-      <div className="container p-3">
-        <div className="mb-3">
+      <Container maxWidth="sm" sx={{mt:3}}>
+      <div className="mb-3">
           <label for="exampleFormControlTextarea1" className="form-label">
             ประเภทงาน
           </label>
@@ -89,7 +90,7 @@ const Homepage = () => {
         <button type="submit" className="btn btn-primary"  onClick={handleSearch}>
           ค้นหา
         </button>
-      </div>
+      </Container>
     </div>
   );
 };
