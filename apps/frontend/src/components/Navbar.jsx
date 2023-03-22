@@ -20,12 +20,6 @@ const Navbar = () => {
               <li class="nav-item">
                 <a class="nav-link" href="/createcompany">เพิ่มบริษัท</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/description">รายละเอียด</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/company">รายละเอียดบริษัท</a>
-              </li>
             </ul>
           </div>
         </div>
