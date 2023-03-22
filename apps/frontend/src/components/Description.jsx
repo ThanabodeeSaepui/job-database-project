@@ -1,4 +1,5 @@
 import Navbar from "./Navbar";
+import "./style/bg.css";
 
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
@@ -9,9 +10,9 @@ import CardContent from "@mui/material/CardContent";
 const Description = () => {
 
   return (
-    <div>
+    <div className="bg">
       <Navbar />
-      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 4, pb: 6 }}>
+      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 15, pb: 6 }}>
         <Typography
           component="h1"
           variant="h4"
@@ -19,7 +20,7 @@ const Description = () => {
           color="text.primary"
           gutterBottom
         >
-          Pricing
+          ชื่อบริษัท
         </Typography>
         <Typography variant="h7" component="p">
           ตำแหน่ง : 
@@ -27,7 +28,7 @@ const Description = () => {
         <Typography variant="h7" component="p">
           รายละเอียด
         </Typography>
-        <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:400, mt:2}}>
+        <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:350, mt:2}}>
           <CardContent>
             
           </CardContent>

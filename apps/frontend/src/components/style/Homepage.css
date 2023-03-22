@@ -1,0 +1,38 @@
+*{
+    font-family: montserrat;
+}
+
+body{
+    background: f1fbff;
+}
+
+.section-padding {
+    padding: 100px 0;
+}
+
+.carousel-item {
+    height: 40vh;
+    min-height: 300px;
+}
+
+.carousel-caption {
+    bottom: 100px;
+    z-index: 2;
+}
+
+.carousel-caption h5 {
+    font-size: 45px;
+    text-transform: uppercase;
+    color: black;
+    letter-spacing: 2px;
+    margin-top: 300px;
+}
+
+.carousel-caption p {
+    width: 60%;
+    margin: auto;
+    font-size: 18px;
+    color: black;
+    line-height: 1.9;
+}
+

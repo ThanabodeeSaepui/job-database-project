@@ -56,7 +56,7 @@ const Serch = (props) => {
       >
         {jobs.map((job, index) => {
           return <div key={index}>
-            <Card sx={{ minWidth: 275, maxWidth: 800, width: 800, mt:3}}>
+            <Card sx={{ minWidth: 275, maxWidth: 800, width: 800, mt:4}}>
               <CardContent>
                 <Typography
                   variant="h4"

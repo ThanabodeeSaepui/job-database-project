@@ -1,5 +1,10 @@
 import Navbar from "./Navbar";
+import image1 from "./image/Homepage1.png";
+import "../components/style/Homepage.css";
+import "./style/bg.css";
 
+import Card from '@mui/material/Card';
+import CardContent from "@mui/material/CardContent";
 import Container from '@mui/material/Container';
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -45,51 +50,81 @@ const Homepage = () => {
   };
 
   return (
-    <div>
+    <div className="bg">
       <Navbar />
-      <Container maxWidth="sm" sx={{mt:3}}>
-      <div className="mb-3">
-          <label for="exampleFormControlTextarea1" className="form-label">
-            ประเภทงาน
-          </label>
-          <select className="form-select" aria-label="Default select example" onChange={(e) => setCategory(e.target.value)}>
-            <option selected>กรุณาเลือกประเภทงานที่สนใจ</option>
-            <option value="Accounting">Accounting</option>
-            <option value="Electrical Engineering">Electrical Engineering</option>
-            <option value="Civil Engineering">Civil Engineering</option>
-            <option value="Computer Engineering">Computer Engineering</option>
-          </select>
-        </div>
 
-        <div className="mb-3">
-          <label for="exampleFormControlTextarea1" className="form-label">
-            ชื่อตำแหน่ง
-          </label>
-          <input
-            className="form-control"
-            type="text"
-            placeholder="กรุณาเลือกตำแหน่งที่สนใจ"
-            onChange={(e) => setJob(e.target.value)}
-          />
+      <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-        <div className="mb-3">
-          <label for="exampleFormControlTextarea1" className="form-label">
-            ชื่อบริษัท
-          </label>
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={options}
-            sx={{ width: 300 }}
-            onChange={(e, value) => setCompany(value.label)}
-            renderInput={(params) => (
-              <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />
-            )}
-          />
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src={image1} class="d-block w-100" alt="..."/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>สนใจติดต่อโฆษณา 1</h5>
+              <p>สนใจติดต่อโฆษณาติดต่อผ่านช่องทาง Facebook</p>
+            </div>
+          </div>
         </div>
-        <button type="submit" className="btn btn-primary"  onClick={handleSearch}>
-          ค้นหา
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
         </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <Container maxWidth="sm" sx={{mt:5}}>
+      <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:350, mt:2}}>
+        <CardContent>
+          <div className="mb-3">
+            <label for="exampleFormControlTextarea1" className="form-label">
+              ประเภทงาน
+            </label>
+            <select className="form-select" aria-label="Default select example" onChange={(e) => setCategory(e.target.value)}>
+              <option selected>กรุณาเลือกประเภทงานที่สนใจ</option>
+              <option value="Accounting">Accounting</option>
+              <option value="Electrical Engineering">Electrical Engineering</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Computer Engineering">Computer Engineering</option>
+            </select>
+          </div>
+
+          <div className="mb-3">
+            <label for="exampleFormControlTextarea1" className="form-label">
+              ชื่อตำแหน่ง
+            </label>
+            <input
+              className="form-control"
+              type="text"
+              placeholder="กรุณาเลือกตำแหน่งที่สนใจ"
+              onChange={(e) => setJob(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlTextarea1" className="form-label">
+              ชื่อบริษัท
+            </label>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={options}
+              sx={{ width: 300 }}
+              onChange={(e, value) => setCompany(value.label)}
+              renderInput={(params) => (
+                <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />
+              )}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary"  onClick={handleSearch}>
+            ค้นหา
+          </button>
+        </CardContent>
+      </Card>
       </Container>
     </div>
   );

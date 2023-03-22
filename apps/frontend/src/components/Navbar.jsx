@@ -1,80 +1,36 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import GlobalStyles from '@mui/material/GlobalStyles';
+import * as React from 'react'; 
 
 const Navbar = () => {
   return (
-    <React.Fragment>
-      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-      <CssBaseline />
-
-      <AppBar
-        position="static"
-        color="primary"
-        elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-      >
-        <Toolbar sx={{ flexWrap: 'wrap' }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            Company name
-          </Typography>
-          <nav>
-            <Link
-              variant="button"
-              color="inherit"
-              href="/"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              หน้าหลัก
-            </Link>
-            <Link
-              variant="button"
-              color="inherit"
-              href="/createjob"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              โพสต์งาน
-            </Link>
-            <Link
-              variant="button"
-              color="inherit"
-              href="/createcompany"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              เพิ่มบริษัท
-            </Link>
-            <Link
-              variant="button"
-              color="inherit"
-              href="/description"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              รายละเอียด
-            </Link>
-            {/* <Link
-              variant="button"
-              color="text.primary"
-              href="/serch"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              ค้นหา
-            </Link> */}
-            <Link
-              variant="button"
-              color="inherit"
-              href="/company"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              บริษัท
-            </Link>
-          </nav>
-        </Toolbar>
-      </AppBar>
-    </React.Fragment>
+    <div>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark">
+        <div class="container">
+          <a class="navbar-brand" href="/"><span className='text-warning'>Home</span>Page</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="/">หน้าหลัก</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/createjob">โพสต์งาน</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/createcompany">เพิ่มบริษัท</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/description">รายละเอียด</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/company">รายละเอียดบริษัท</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
   );
 };
 
