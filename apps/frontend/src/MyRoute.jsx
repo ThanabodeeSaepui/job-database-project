@@ -14,8 +14,8 @@ const MyRoute = () => {
         <Route path="/CreateCompany" element={<CreateCompany />} />
         <Route path="/CreateJob" element={<CreateJob />} />
         <Route path="/Serch" element={<Serch />} />
-        <Route path="/Description" element={<Description />} />
-        <Route path="/Company" element={<Company />} />
+        <Route path="/Description/:id" element={<Description />} />
+        <Route path="/Company/:id" element={<Company />} />
       </Routes>
     </BrowserRouter>
   );
