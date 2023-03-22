@@ -167,8 +167,15 @@ const Search = (props) => {
           {"ต้องการลบโพสต์นี้หรือไม่"}
         </DialogTitle>
         <DialogActions>
-          <Button onClick={handleDelete}>Yes</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handleDelete} style={{ fontWeight: 600 }}>
+            Yes
+          </Button>
+          <Button
+            color="error"
+            style={{ fontWeight: 600 }}
+            onClick={handleClose}
+            autoFocus
+          >
             No
           </Button>
         </DialogActions>
