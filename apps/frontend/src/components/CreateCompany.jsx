@@ -1,13 +1,13 @@
 import Navbar from "./Navbar";
 import "./style/bg.css";
 
-import Container from '@mui/material/Container';
+import Container from "@mui/material/Container";
 import { useState } from "react";
 // import { useQuery } from 'react-query'
 import axios from "axios";
 import { Alert } from "@mui/material";
 
-import Card from '@mui/material/Card';
+import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 const CreateCompany = () => {
@@ -34,7 +34,7 @@ const CreateCompany = () => {
     console.log(data);
     try {
       let res = await axios.post(
-        "https://job-db-prod.onrender.com/api/sql/companies",
+        "http://localhost:8080/api/sql/companies",
         data,
         {
           headers: {
@@ -59,78 +59,100 @@ const CreateCompany = () => {
   return (
     <div className="bg">
       <Navbar />
-      <Container maxWidth="sm" sx={{pt:10}}>
-      <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:600, mt:2, border:1, borderRadius: '16px'}}>
-        <CardContent>
-          <div className="m-3">
-            <form>
-              {success && (
+      <Container maxWidth="sm" sx={{ pt: 10 }}>
+        <Card
+          sx={{
+            minWidth: 275,
+            maxWidth: 800,
+            width: 600,
+            height: 600,
+            mt: 2,
+            border: 1,
+            borderRadius: "16px",
+          }}
+        >
+          <CardContent>
+            <div className="m-3">
+              <form>
+                {success && (
                   <Alert severity="success">Success สร้างบริษัทสำเร็จ</Alert>
-              )}
-              {fail && (
-                <Alert severity="error">Error ไม่สามารถสร้างบริษัทได้</Alert>
-              )}
-              <div className="mb-3">
-                <label for="exampleFormControlTextarea1" className="form-label">
-                  ชื่อบริษัท{" "}
-                </label>
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="กรุณากรอกชื่อบริษัท"
-                  value={company}
-                  onChange={(e) => setCompany(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <label for="exampleFormControlTextarea1" className="form-label">
+                )}
+                {fail && (
+                  <Alert severity="error">Error ไม่สามารถสร้างบริษัทได้</Alert>
+                )}
+                <div className="mb-3">
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
+                    ชื่อบริษัท{" "}
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="กรุณากรอกชื่อบริษัท"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
                     ที่อยู่
-                </label>
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="กรุณากรอกที่อยู่บริษัท"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <label for="exampleFormControlTextarea1" className="form-label">
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="กรุณากรอกที่อยู่บริษัท"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
                     ช่องทางการติดต่อ
-                </label>
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="กรุณากรอกช่องทางการติดต่อ"
-                  value={contact}
-                  onChange={(e) => setContact(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <label for="exampleFormControlTextarea1" className="form-label">
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="กรุณากรอกช่องทางการติดต่อ"
+                    value={contact}
+                    onChange={(e) => setContact(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
                     รายละเอียด
-                </label>
-                <textarea
-                  className="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="7"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
-              </div>
-              <div className="mb-3">
-                <button
-                  type="submit"
-                  className="btn btn-primary pt-3"
-                  onClick={handleClick}
-                >
-                  เพิ่มบริษัท
-                </button>
-              </div>
-            </form>
-          </div>
-        </CardContent>
-      </Card>
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="7"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  ></textarea>
+                </div>
+                <div className="mb-3">
+                  <button
+                    type="submit"
+                    className="btn btn-primary pt-3"
+                    onClick={handleClick}
+                  >
+                    เพิ่มบริษัท
+                  </button>
+                </div>
+              </form>
+            </div>
+          </CardContent>
+        </Card>
       </Container>
     </div>
   );

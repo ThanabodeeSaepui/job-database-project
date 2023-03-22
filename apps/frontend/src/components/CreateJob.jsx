@@ -1,14 +1,14 @@
 import Navbar from "./Navbar";
 import "./style/bg.css";
 
-import Container from '@mui/material/Container';
+import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Alert } from "@mui/material";
-import Card from '@mui/material/Card';
+import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 const CreateJob = () => {
@@ -56,16 +56,13 @@ const CreateJob = () => {
       category_id: category,
       company_id: company,
     });
+    console.log(data);
     try {
-      let res = await axios.post(
-        "https://job-db-prod.onrender.com/api/sql/jobs",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      let res = await axios.post("http://localhost:8080/api/sql/jobs", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (res.status === 200) {
         setJob_name("");
         setJob_description("");
@@ -82,15 +79,32 @@ const CreateJob = () => {
   return (
     <div className="bg">
       <Navbar />
-      <Container maxWidth="sm" sx={{pt:10}}>
-      <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:600, mt:2, border:1, borderRadius: '16px'}}>
+      <Container maxWidth="sm" sx={{ pt: 10 }}>
+        <Card
+          sx={{
+            minWidth: 275,
+            maxWidth: 800,
+            width: 600,
+            height: 600,
+            mt: 2,
+            border: 1,
+            borderRadius: "16px",
+          }}
+        >
           <CardContent>
             <div className="m-3">
-              {success && <Alert severity="success">Success โพสต์งานสำเร็จ</Alert>}
-              {fail && <Alert severity="error">Error ไม่สามารถโพสต์งานได้</Alert>}
+              {success && (
+                <Alert severity="success">Success โพสต์งานสำเร็จ</Alert>
+              )}
+              {fail && (
+                <Alert severity="error">Error ไม่สามารถโพสต์งานได้</Alert>
+              )}
               <from>
                 <div className="mb-3">
-                  <label for="exampleFormControlTextarea1" className="form-label">
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
                     ประเภทงาน
                   </label>
                   <select
@@ -106,11 +120,16 @@ const CreateJob = () => {
                   </select>
                 </div>
                 <div className="mb-3">
-                  <label for="exampleFormControlTextarea1" className="form-label">
-                      ชื่อบริษัท
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
+                    ชื่อบริษัท
                   </label>
                   <Autocomplete
-                    isOptionEqualToValue={(option, value) => option.id === value.id}
+                    isOptionEqualToValue={(option, value) =>
+                      option.id === value.id
+                    }
                     disablePortal
                     id="combo-box-demo"
                     options={options}
@@ -122,7 +141,10 @@ const CreateJob = () => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleFormControlTextarea1" className="form-label">
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
                     ตำแหน่ง
                   </label>
                   <input
@@ -134,19 +156,25 @@ const CreateJob = () => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleFormControlTextarea1" className="form-label">
-                      จำนวนที่รับ
-                    </label>
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="จำนวน"
-                      value={avail_seat}
-                      onChange={(e) => setAvail_seat(e.target.value)}
-                    />
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
+                    จำนวนที่รับ
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="จำนวน"
+                    value={avail_seat}
+                    onChange={(e) => setAvail_seat(e.target.value)}
+                  />
                 </div>
                 <div className="mb-3">
-                  <label for="exampleFormControlTextarea1" className="form-label">
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
                     รายละเอียด
                   </label>
                   <textarea
@@ -156,7 +184,7 @@ const CreateJob = () => {
                     value={job_description}
                     onChange={(e) => setJob_description(e.target.value)}
                   ></textarea>
-                  </div>
+                </div>
                 <button
                   type="submit"
                   className="btn btn-primary"

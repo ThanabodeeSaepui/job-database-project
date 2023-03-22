@@ -153,7 +153,7 @@ app.get("/api/sql/jobs", async (req: Request, res: Response) => {
     },
     where: filter,
     skip: (page - 1) * 10,
-    take: 10,
+    take: 50,
   });
   res.send(jobs);
 });
@@ -189,6 +189,7 @@ app.get("/api/sql/jobs/:id", async (req: Request, res: Response) => {
 // Create
 app.post("/api/sql/jobs", async (req: Request, res: Response) => {
   const body = req.body;
+  console.log(body);
   try {
     const result = await SQLDataSource.manager.save(Job, {
       job_name: body.job_name,
@@ -339,7 +340,7 @@ app.get("/api/nosql/categories", async (req: Request, res: Response) => {
     .collection("Category")
     .find({})
     .skip((page - 1) * 10)
-    .limit(10)
+    .limit(50)
     .toArray();
   await client.close();
   res.status(200).send(collection);

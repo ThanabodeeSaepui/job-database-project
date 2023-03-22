@@ -48,7 +48,7 @@ const Homepage = () => {
   const handleSearch = (e) => {
     // console.log(fee);
     e.preventDefault();
-    navigate("/serch", {
+    navigate("/search", {
       state: { job: job, category: category, company: company },
     });
   };
@@ -122,16 +122,19 @@ const Homepage = () => {
         </button>
       </div>
 
-      <Container maxWidth="sm" sx={{ mt: 5, mb: 5 }}>
+      <Container
+        sx={{ mt: 5, mb: 5, width: { xs: 400, sm: 600, md: 800, lg: 1000 } }}
+      >
         <Card
           sx={{
-            minWidth: 275,
-            maxWidth: 800,
-            width: 600,
+            // minWidth: 275,
+            // maxWidth: 800,
+            // width: 600,
             height: 370,
             mt: 2,
             border: 1,
             borderRadius: "16px",
+            boxShadow: "10px 10px grey",
           }}
         >
           <CardContent>

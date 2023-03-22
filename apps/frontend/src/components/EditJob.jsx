@@ -76,13 +76,14 @@ const EditJob = () => {
   return (
     <div className="bg">
       <Navbar />
-      <Container maxWidth="sm" sx={{ pt: 10 }}>
+      <Container
+        sx={{ pt: 10, mb: 10, width: { xs: 400, sm: 600, md: 800, lg: 1000 } }}
+      >
         <Card
           sx={{
-            minWidth: 275,
-            maxWidth: 800,
-            width: 600,
-            height: 600,
+            // minWidth: 275,
+            // maxWidth: 800,
+            // width: 600,
             mt: 2,
             border: 1,
             borderRadius: "16px",
@@ -96,10 +97,17 @@ const EditJob = () => {
               {fail && (
                 <Alert severity="error">Error ไม่สามารถโพสต์งานได้</Alert>
               )}
-              <Typography variant="h4" align="center" underline="hover">
+              <Typography
+                variant="h4"
+                align="center"
+                underline="hover"
+                style={{ marginBottom: 10 }}
+              >
                 {company}
               </Typography>
-              <Typography variant="h5">หมวหหมู่ : {category}</Typography>
+              <Typography variant="h5" style={{ marginBottom: 10 }}>
+                หมวดหมู่ : {category}
+              </Typography>
               <from className="mb-3">
                 <label for="exampleFormControlTextarea1" className="form-label">
                   ชื่องาน/ตำแหน่ง
@@ -109,6 +117,7 @@ const EditJob = () => {
                   type="text"
                   placeholder="กรุณากรอกตำแหน่งการทำงาน"
                   value={job_name}
+                  style={{ marginBottom: 10 }}
                   onChange={(e) => setJob_name(e.target.value)}
                 />
                 <label for="exampleFormControlTextarea1" className="form-label">
@@ -118,6 +127,7 @@ const EditJob = () => {
                   className="form-control"
                   type="text"
                   placeholder="จำนวน"
+                  style={{ marginBottom: 10 }}
                   value={avail_seat}
                   onChange={(e) => setAvail_seat(e.target.value)}
                 />
@@ -128,6 +138,7 @@ const EditJob = () => {
                   className="form-control"
                   id="exampleFormControlTextarea1"
                   rows="4"
+                  style={{ resize: "none", height: 200, marginBottom: 30 }}
                   value={job_description}
                   onChange={(e) => setJob_description(e.target.value)}
                 ></textarea>
@@ -136,7 +147,7 @@ const EditJob = () => {
                   className="btn btn-primary"
                   onClick={handleClick}
                 >
-                  แก้ไขงาน
+                  บันทึกการแก้ไข
                 </button>
               </from>
             </div>

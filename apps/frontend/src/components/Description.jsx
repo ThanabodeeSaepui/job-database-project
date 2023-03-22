@@ -35,7 +35,7 @@ const Description = () => {
       <Container
         disableGutters
         component="main"
-        sx={{ pt: 15, pb: 6, width: { xs: "70%", lg: 800 } }}
+        sx={{ pt: 15, pb: 6, width: { xs: "70%", lg: 1000 } }}
       >
         <Card
           sx={{
@@ -49,7 +49,11 @@ const Description = () => {
           }}
         >
           <CardContent sx={{ m: 3 }}>
-            <Typography variant="h4" align="center">
+            <Typography
+              variant="h4"
+              align="center"
+              style={{ marginBottom: 30 }}
+            >
               <Link
                 underline="hover"
                 color="text.primary"
@@ -59,10 +63,10 @@ const Description = () => {
                 {job?.company?.company_name}
               </Link>
             </Typography>
-            <Typography variant="h7" component="p">
+            <Typography variant="h5" component="p" style={{ marginBottom: 20 }}>
               ตำแหน่ง : {job?.job_name}
             </Typography>
-            <Typography variant="h7" component="p">
+            <Typography variant="h7" component="p" style={{ marginBottom: 5 }}>
               จำนวนคนที่รับ : {job?.avail_seat}
             </Typography>
             <Typography variant="h7" component="p">
