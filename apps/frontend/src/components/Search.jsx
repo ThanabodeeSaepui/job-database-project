@@ -97,7 +97,9 @@ const Serch = (props) => {
                       size="medium"
                       variant="outlined"
                       color="secondary"
-                      href="#"
+                      onClick={() => {
+                        navigate(`/EditJob/${job.id}`);
+                      }}
                     >
                       แก้ไขข้อมูล
                     </Button>

@@ -35,11 +35,11 @@ const EditJob = () => {
 
   useEffect(() => {
     if (!isLoading) {
-      setCategory(data.category.category_name);
-      setCompany(data.company.company_name);
-      setJob_name(data.job_name);
-      setJob_description(data.job_description);
-      setAvail_seat(data.avail_seat);
+      setCategory(data?.category?.category_name);
+      setCompany(data?.company?.company_name);
+      setJob_name(data?.job_name);
+      setJob_description(data?.job_description);
+      setAvail_seat(data?.avail_seat);
     }
   }, [data]);
 
