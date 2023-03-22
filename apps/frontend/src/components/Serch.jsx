@@ -49,16 +49,19 @@ const Serch = (props) => {
         direction="column"
         justifyContent="center"
         alignItems="center"
+        sx={{ mt: 8 }}
       >
         {jobs.map((job, index) => {
           return (
             <div key={index}>
-              <Container maxWidth="m" sx={{ pt: 8 }}>
+              <Container
+                maxWidth="m"
+                sx={{ m: 2, width: { xs: 400, sm: 600, md: 800, lg: 1000 } }}
+              >
                 <Card
                   sx={{
-                    minWidth: 275,
-                    maxWidth: 800,
-                    width: 800,
+                    // minWidth: 275,
+                    // maxWidth: 800,
                     border: 1,
                     borderRadius: "16px",
                   }}
@@ -87,6 +90,7 @@ const Serch = (props) => {
                     <Button
                       size="medium"
                       variant="outlined"
+                      sx={{ m: 1 }}
                       onClick={() => {
                         navigate(`/Description/${job.id}`);
                       }}

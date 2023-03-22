@@ -34,14 +34,14 @@ const Company = () => {
         disableGutters
         maxWidth="sm"
         component="main"
-        sx={{ pt: 15, pb: 6 }}
+        sx={{ pt: 15, pb: 6, width: { xs: "70%", lg: 800 } }}
       >
         <Card
           sx={{
-            minWidth: 275,
-            maxWidth: 800,
-            width: 600,
-            height: 500,
+            // minWidth: 275,
+            // maxWidth: 800,
+            // width: 600,
+            // height: 500,
             mt: 2,
             border: 1,
             borderRadius: "16px",

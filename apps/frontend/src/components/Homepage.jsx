@@ -5,9 +5,9 @@ import image3 from "./image/image3.jpg";
 import "../components/style/Homepage.css";
 import "./style/bg.css";
 
-import Card from '@mui/material/Card';
+import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Container from '@mui/material/Container';
+import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useQuery } from "@tanstack/react-query";
@@ -48,100 +48,151 @@ const Homepage = () => {
   const handleSearch = (e) => {
     // console.log(fee);
     e.preventDefault();
-    navigate('/serch',{state:{job:job,category:category,company:company}})
+    navigate("/serch", {
+      state: { job: job, category: category, company: company },
+    });
   };
 
   return (
-    <div className="bg">
+    <div>
       <Navbar />
       <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src={image1} class="d-block w-100" alt="..."/>
+            <img src={image1} class="d-block w-100" alt="..." />
             <div class="carousel-caption d-none d-md-block">
               <h5>!! โฆษณา !!</h5>
               <p>สนใจติดต่อโฆษณาได้ที่ช่องทางนี้ xxxxxxxxxx</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src={image2} class="d-block w-100" alt="..."/>
+            <img src={image2} class="d-block w-100" alt="..." />
             <div class="carousel-caption d-none d-md-block">
               <h5>!! โฆษณา !!</h5>
               <p>สนใจติดต่อโฆษณาได้ที่ช่องทางนี้ xxxxxxxxxx</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src={image3} class="d-block w-100" alt="..."/>
+            <img src={image3} class="d-block w-100" alt="..." />
             <div class="carousel-caption d-none d-md-block">
               <h5>!! โฆษณา !!</h5>
               <p>สนใจติดต่อโฆษณาได้ที่ช่องทางนี้ xxxxxxxxxx</p>
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
 
-      <Container maxWidth="sm" sx={{mt:5}}>
-      <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:370, mt:2, border:1, borderRadius: '16px'}}>
-        <CardContent>
-          <div className="m-3">
-            <div className="mb-3">
-              <label for="exampleFormControlTextarea1" className="form-label">
-                ประเภทงาน
-              </label>
-              <select className="form-select" aria-label="Default select example" onChange={(e) => setCategory(e.target.value)}>
-                <option selected>กรุณาเลือกประเภทงานที่สนใจ</option>
-                <option value="Accounting">Accounting</option>
-                <option value="Electrical Engineering">Electrical Engineering</option>
-                <option value="Civil Engineering">Civil Engineering</option>
-                <option value="Computer Engineering">Computer Engineering</option>
-              </select>
-            </div>
+      <Container maxWidth="sm" sx={{ mt: 5, mb: 5 }}>
+        <Card
+          sx={{
+            minWidth: 275,
+            maxWidth: 800,
+            width: 600,
+            height: 370,
+            mt: 2,
+            border: 1,
+            borderRadius: "16px",
+          }}
+        >
+          <CardContent>
+            <div className="m-3">
+              <div className="mb-3">
+                <label for="exampleFormControlTextarea1" className="form-label">
+                  ประเภทงาน
+                </label>
+                <select
+                  className="form-select"
+                  aria-label="Default select example"
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  <option selected>กรุณาเลือกประเภทงานที่สนใจ</option>
+                  <option value="Accounting">Accounting</option>
+                  <option value="Electrical Engineering">
+                    Electrical Engineering
+                  </option>
+                  <option value="Civil Engineering">Civil Engineering</option>
+                  <option value="Computer Engineering">
+                    Computer Engineering
+                  </option>
+                </select>
+              </div>
 
-            <div className="mb-3">
-              <label for="exampleFormControlTextarea1" className="form-label">
-                ชื่อตำแหน่ง
-              </label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="กรุณาเลือกตำแหน่งที่สนใจ"
-                onChange={(e) => setJob(e.target.value)}
-              />
+              <div className="mb-3">
+                <label for="exampleFormControlTextarea1" className="form-label">
+                  ชื่อตำแหน่ง
+                </label>
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="กรุณาเลือกตำแหน่งที่สนใจ"
+                  onChange={(e) => setJob(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label for="exampleFormControlTextarea1" className="form-label">
+                  ชื่อบริษัท
+                </label>
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={options}
+                  sx={{ width: 300 }}
+                  onChange={(e, value) => setCompany(value.label)}
+                  renderInput={(params) => (
+                    <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />
+                  )}
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={handleSearch}
+              >
+                ค้นหา
+              </button>
             </div>
-            <div className="mb-3">
-              <label for="exampleFormControlTextarea1" className="form-label">
-                ชื่อบริษัท
-              </label>
-              <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                options={options}
-                sx={{ width: 300 }}
-                onChange={(e, value) => setCompany(value.label)}
-                renderInput={(params) => (
-                  <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />
-                )}
-              />
-            </div>
-            <button type="submit" className="btn btn-primary"  onClick={handleSearch}>
-              ค้นหา
-            </button>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
       </Container>
     </div>
   );

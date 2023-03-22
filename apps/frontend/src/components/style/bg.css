@@ -1,9 +1,8 @@
 .bg {
-    background-image: url("../image/bg.jpg");
-    height:46.56rem;
-    width: 100%;
-    position: relative;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+  background-image: url("../image/bg.jpg");
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
