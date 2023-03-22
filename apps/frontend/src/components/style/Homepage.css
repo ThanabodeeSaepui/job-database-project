@@ -1,11 +1,3 @@
-*{
-    font-family: montserrat;
-}
-
-body{
-    background: f1fbff;
-}
-
 .section-padding {
     padding: 100px 0;
 }
@@ -23,7 +15,8 @@ body{
 .carousel-caption h5 {
     font-size: 45px;
     text-transform: uppercase;
-    color: black;
+    color: white;
+    text-shadow: 0.05em 0.1em #333;
     letter-spacing: 2px;
     margin-top: 300px;
 }
@@ -31,8 +24,9 @@ body{
 .carousel-caption p {
     width: 60%;
     margin: auto;
-    font-size: 18px;
-    color: black;
+    font-size: 20px;
+    color: white;
+    text-shadow: 0.1em 0.1em #333;
     line-height: 1.9;
 }
 

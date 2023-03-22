@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import {useLocation} from 'react-router-dom';
+import Container from '@mui/material/Container';
 
 const Serch = (props) => {
   const [page, setPage] = useState(1)
@@ -56,7 +57,8 @@ const Serch = (props) => {
       >
         {jobs.map((job, index) => {
           return <div key={index}>
-            <Card sx={{ minWidth: 275, maxWidth: 800, width: 800, mt:4}}>
+            <Container maxWidth="m" sx={{pt:8}}>
+            <Card sx={{ minWidth: 275, maxWidth: 800, width: 800, border:1, borderRadius: '16px'}}>
               <CardContent>
                 <Typography
                   variant="h4"
@@ -83,6 +85,7 @@ const Serch = (props) => {
                 <Button size="medium" variant="outlined" color="error" href="#">ลบข้อมูล</Button>
               </CardActions>
             </Card>
+            </Container>
           </div>
         })}
       </Grid>

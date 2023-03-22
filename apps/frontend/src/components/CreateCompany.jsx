@@ -60,68 +60,75 @@ const CreateCompany = () => {
     <div className="bg">
       <Navbar />
       <Container maxWidth="sm" sx={{pt:10}}>
-      <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:550, mt:2}}>
+      <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:600, mt:2, border:1, borderRadius: '16px'}}>
         <CardContent>
-          <form>
-            <div className="mb-3">
+          <div className="m-3">
+            <form>
               {success && (
-                <Alert severity="success">Success สร้างบริษัทสำเร็จ</Alert>
+                  <Alert severity="success">Success สร้างบริษัทสำเร็จ</Alert>
               )}
               {fail && (
                 <Alert severity="error">Error ไม่สามารถสร้างบริษัทได้</Alert>
               )}
-              <label for="exampleFormControlTextarea1" className="form-label">
-                ชื่อบริษัท{" "}
-              </label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="กรุณากรอกชื่อบริษัท"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-              />
-
-              <label for="exampleFormControlTextarea1" className="form-label">
-                ที่อยู่
-              </label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="กรุณากรอกที่อยู่บริษัท"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-
-              <label for="exampleFormControlTextarea1" className="form-label">
-                ช่องทางการติดต่อ
-              </label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="กรุณากรอกช่องทางการติดต่อ"
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-              />
-
-              <label for="exampleFormControlTextarea1" className="form-label">
-                รายละเอียด
-              </label>
-              <textarea
-                className="form-control"
-                id="exampleFormControlTextarea1"
-                rows="5"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={handleClick}
-            >
-              เพิ่มบริษัท
-            </button>
-          </form>
+              <div className="mb-3">
+                <label for="exampleFormControlTextarea1" className="form-label">
+                  ชื่อบริษัท{" "}
+                </label>
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="กรุณากรอกชื่อบริษัท"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label for="exampleFormControlTextarea1" className="form-label">
+                    ที่อยู่
+                </label>
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="กรุณากรอกที่อยู่บริษัท"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label for="exampleFormControlTextarea1" className="form-label">
+                    ช่องทางการติดต่อ
+                </label>
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="กรุณากรอกช่องทางการติดต่อ"
+                  value={contact}
+                  onChange={(e) => setContact(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label for="exampleFormControlTextarea1" className="form-label">
+                    รายละเอียด
+                </label>
+                <textarea
+                  className="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="7"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                ></textarea>
+              </div>
+              <div className="mb-3">
+                <button
+                  type="submit"
+                  className="btn btn-primary pt-3"
+                  onClick={handleClick}
+                >
+                  เพิ่มบริษัท
+                </button>
+              </div>
+            </form>
+          </div>
         </CardContent>
       </Card>
       </Container>

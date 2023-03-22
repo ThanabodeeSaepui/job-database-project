@@ -83,77 +83,89 @@ const CreateJob = () => {
     <div className="bg">
       <Navbar />
       <Container maxWidth="sm" sx={{pt:10}}>
-      <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:550, mt:2}}>
+      <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:600, mt:2, border:1, borderRadius: '16px'}}>
           <CardContent>
-            {success && <Alert severity="success">Success โพสต์งานสำเร็จ</Alert>}
-            {fail && <Alert severity="error">Error ไม่สามารถโพสต์งานได้</Alert>}
-            <from>
-              <label for="exampleFormControlTextarea1" className="form-label">
-                ประเภทงาน
-              </label>
-              <select
-                className="form-select"
-                aria-label="Default select example"
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option selected>กรุณาเลือกประเภทงานงาน</option>
-                <option value="217">Accounting</option>
-                <option value="237">Civil Engineering</option>
-                <option value="257">Electrical Engineering</option>
-                <option value="263">Civil Computer Engineering</option>
-              </select>
-              <label for="exampleFormControlTextarea1" className="form-label">
-                ชื่อบริษัท
-              </label>
-              <Autocomplete
-                isOptionEqualToValue={(option, value) => option.id === value.id}
-                disablePortal
-                id="combo-box-demo"
-                options={options}
-                sx={{ width: 300 }}
-                onChange={(e, value) => setCompany(value.id)}
-                renderInput={(params) => (
-                  <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />
-                )}
-              />
-              <label for="exampleFormControlTextarea1" className="form-label">
-                ตำแหน่ง
-              </label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="กรุณากรอกตำแหน่งการทำงาน"
-                value={job_name}
-                onChange={(e) => setJob_name(e.target.value)}
-              />
-              <label for="exampleFormControlTextarea1" className="form-label">
-                จำนวนที่รับ
-              </label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="จำนวน"
-                value={avail_seat}
-                onChange={(e) => setAvail_seat(e.target.value)}
-              />
-              <label for="exampleFormControlTextarea1" className="form-label">
-                รายละเอียด
-              </label>
-              <textarea
-                className="form-control"
-                id="exampleFormControlTextarea1"
-                rows="5"
-                value={job_description}
-                onChange={(e) => setJob_description(e.target.value)}
-              ></textarea>
-              <button
-                type="submit"
-                className="btn btn-primary"
-                onClick={handleClick}
-              >
-                โพสต์งาน
-              </button>
-            </from>
+            <div className="m-3">
+              {success && <Alert severity="success">Success โพสต์งานสำเร็จ</Alert>}
+              {fail && <Alert severity="error">Error ไม่สามารถโพสต์งานได้</Alert>}
+              <from>
+                <div className="mb-3">
+                  <label for="exampleFormControlTextarea1" className="form-label">
+                    ประเภทงาน
+                  </label>
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    <option selected>กรุณาเลือกประเภทงานงาน</option>
+                    <option value="217">Accounting</option>
+                    <option value="237">Civil Engineering</option>
+                    <option value="257">Electrical Engineering</option>
+                    <option value="263">Civil Computer Engineering</option>
+                  </select>
+                </div>
+                <div className="mb-3">
+                  <label for="exampleFormControlTextarea1" className="form-label">
+                      ชื่อบริษัท
+                  </label>
+                  <Autocomplete
+                    isOptionEqualToValue={(option, value) => option.id === value.id}
+                    disablePortal
+                    id="combo-box-demo"
+                    options={options}
+                    sx={{ width: 300 }}
+                    onChange={(e, value) => setCompany(value.id)}
+                    renderInput={(params) => (
+                      <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />
+                    )}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label for="exampleFormControlTextarea1" className="form-label">
+                    ตำแหน่ง
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="กรุณากรอกตำแหน่งการทำงาน"
+                    value={job_name}
+                    onChange={(e) => setJob_name(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label for="exampleFormControlTextarea1" className="form-label">
+                      จำนวนที่รับ
+                    </label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="จำนวน"
+                      value={avail_seat}
+                      onChange={(e) => setAvail_seat(e.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                  <label for="exampleFormControlTextarea1" className="form-label">
+                    รายละเอียด
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="4"
+                    value={job_description}
+                    onChange={(e) => setJob_description(e.target.value)}
+                  ></textarea>
+                  </div>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  onClick={handleClick}
+                >
+                  โพสต์งาน
+                </button>
+              </from>
+            </div>
           </CardContent>
         </Card>
       </Container>

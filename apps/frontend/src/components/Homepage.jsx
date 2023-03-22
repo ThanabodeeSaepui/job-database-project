@@ -1,5 +1,7 @@
 import Navbar from "./Navbar";
-import image1 from "./image/Homepage1.png";
+import image1 from "./image/image1.jpg";
+import image2 from "./image/image4.jpg";
+import image3 from "./image/image3.jpg";
 import "../components/style/Homepage.css";
 import "./style/bg.css";
 
@@ -52,34 +54,47 @@ const Homepage = () => {
   return (
     <div className="bg">
       <Navbar />
-
-      <div id="carouselExampleCaptions" class="carousel slide">
+      <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src={image1} class="d-block w-100" alt="..."/>
             <div class="carousel-caption d-none d-md-block">
-              <h5>สนใจติดต่อโฆษณา 1</h5>
-              <p>สนใจติดต่อโฆษณาติดต่อผ่านช่องทาง Facebook</p>
+              <h5>!! โฆษณา !!</h5>
+              <p>สนใจติดต่อโฆษณาได้ที่ช่องทางนี้ xxxxxxxxxx</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src={image2} class="d-block w-100" alt="..."/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>!! โฆษณา !!</h5>
+              <p>สนใจติดต่อโฆษณาได้ที่ช่องทางนี้ xxxxxxxxxx</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src={image3} class="d-block w-100" alt="..."/>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>!! โฆษณา !!</h5>
+              <p>สนใจติดต่อโฆษณาได้ที่ช่องทางนี้ xxxxxxxxxx</p>
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
 
       <Container maxWidth="sm" sx={{mt:5}}>
-      <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:350, mt:2}}>
+      <Card sx={{ minWidth: 275, maxWidth: 800, width: 600, height:350, mt:2, border:1, borderRadius: '16px'}}>
         <CardContent>
           <div className="mb-3">
             <label for="exampleFormControlTextarea1" className="form-label">
