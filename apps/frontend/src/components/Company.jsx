@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const Company = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const [company, setCompany] = useState({});
   const { isLoading, data } = useQuery({
     queryFn: () => {
