@@ -77,13 +77,15 @@ const EditJob = () => {
     <div className="bg">
       <Navbar />
       <Container
-        sx={{ pt: 10, mb: 10, width: { xs: 400, sm: 600, md: 800, lg: 1000 } }}
+        sx={{
+          pt: 10,
+          pb: 6,
+          mb: 10,
+          width: { xs: 400, sm: 600, md: 800, lg: 1000 },
+        }}
       >
         <Card
           sx={{
-            // minWidth: 275,
-            // maxWidth: 800,
-            // width: 600,
             mt: 2,
             border: 1,
             borderRadius: "16px",

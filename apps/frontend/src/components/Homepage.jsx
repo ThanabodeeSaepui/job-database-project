@@ -188,7 +188,7 @@ const Homepage = () => {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-warning"
                 onClick={handleSearch}
               >
                 ค้นหา

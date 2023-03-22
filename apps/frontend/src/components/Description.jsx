@@ -39,10 +39,6 @@ const Description = () => {
       >
         <Card
           sx={{
-            // minWidth: 275,
-            // maxWidth: 800,
-            // width: 600,
-            // height: 500,
             mt: 2,
             border: 1,
             borderRadius: "16px",

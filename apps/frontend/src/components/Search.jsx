@@ -113,7 +113,7 @@ const Search = (props) => {
                           <CardActions>
                             <Button
                               size="medium"
-                              variant="outlined"
+                              variant="contained"
                               sx={{ m: 1 }}
                               onClick={() => {
                                 navigate(`/Description/${job.id}`);
@@ -123,7 +123,7 @@ const Search = (props) => {
                             </Button>
                             <Button
                               size="medium"
-                              variant="outlined"
+                              variant="contained"
                               color="secondary"
                               sx={{ m: 1 }}
                               onClick={() => {
@@ -134,7 +134,7 @@ const Search = (props) => {
                             </Button>
                             <Button
                               size="medium"
-                              variant="outlined"
+                              variant="contained"
                               color="error"
                               sx={{ m: 1 }}
                               onClick={() => {

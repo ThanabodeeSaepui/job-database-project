@@ -99,7 +99,7 @@ const Company = () => {
             <div align="center">
               <Button
                 size="medium"
-                variant="outlined"
+                variant="contained"
                 color="secondary"
                 sx={{ mr: 3 }}
                 onClick={() => {}}
@@ -108,7 +108,7 @@ const Company = () => {
               </Button>
               <Button
                 size="medium"
-                variant="outlined"
+                variant="contained"
                 color="error"
                 onClick={() => {
                   handleClickOpen();
@@ -131,8 +131,15 @@ const Company = () => {
           {"ต้องการลบบริษัทนี้หรือไม่"}
         </DialogTitle>
         <DialogActions>
-          <Button onClick={handleDelete}>Yes</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handleDelete} style={{ fontWeight: 600 }}>
+            Yes
+          </Button>
+          <Button
+            color="error"
+            style={{ fontWeight: 600 }}
+            onClick={handleClose}
+            autoFocus
+          >
             No
           </Button>
         </DialogActions>

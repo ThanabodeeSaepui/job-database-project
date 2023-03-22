@@ -79,13 +79,11 @@ const CreateJob = () => {
   return (
     <div className="bg">
       <Navbar />
-      <Container maxWidth="sm" sx={{ pt: 10 }}>
+      <Container
+        sx={{ pt: 10, pb: 6, width: { xs: 400, sm: 600, md: 800, lg: 1000 } }}
+      >
         <Card
           sx={{
-            minWidth: 275,
-            maxWidth: 800,
-            width: 600,
-            height: 600,
             mt: 2,
             border: 1,
             borderRadius: "16px",
@@ -112,7 +110,7 @@ const CreateJob = () => {
                     aria-label="Default select example"
                     onChange={(e) => setCategory(e.target.value)}
                   >
-                    <option selected>กรุณาเลือกประเภทงานงาน</option>
+                    <option selected>กรุณาเลือกประเภทงาน</option>
                     <option value="217">Accounting</option>
                     <option value="237">Civil Engineering</option>
                     <option value="257">Electrical Engineering</option>
@@ -133,7 +131,7 @@ const CreateJob = () => {
                     disablePortal
                     id="combo-box-demo"
                     options={options}
-                    sx={{ width: 300 }}
+                    sx={{ width: "100%" }}
                     onChange={(e, value) => setCompany(value.id)}
                     renderInput={(params) => (
                       <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />
@@ -187,7 +185,7 @@ const CreateJob = () => {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-primary"
+                  className="btn btn-warning"
                   onClick={handleClick}
                 >
                   โพสต์งาน
