@@ -118,7 +118,7 @@ const CreateJob = () => {
                     <option value="217">Accounting</option>
                     <option value="237">Civil Engineering</option>
                     <option value="257">Electrical Engineering</option>
-                    <option value="263">Civil Computer Engineering</option>
+                    <option value="263">Computer Engineering</option>
                   </select>
                 </div>
                 <div className="mb-3">
