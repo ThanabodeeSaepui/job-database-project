@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { SQLDataSource } from "./data-source";
-import { MongoClient, ObjectId } from "mongodb";
+import { Collection, MongoClient, ObjectId } from "mongodb";
 import { env } from "./environment-var";
 
 const uri = env.MONGODB_URL || "mongodb://127.0.0.1:27017";
@@ -268,7 +268,24 @@ app.get("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
   const db = client.db(dbName);
   const collection = await db
     .collection("Job")
-    .findOne({ _id: new ObjectId(req.params.id) });
+    .aggregate([
+      {
+        $match:
+        {
+          _id: new ObjectId(req.params.id)
+        }
+      },
+      { $lookup:
+         {
+           from: 'Company',
+           localField: 'company.company_name',
+           foreignField: 'company_name',
+           as: 'company'
+         }
+       }
+      ])
+      .toArray()
+    // .findOne({ _id: new ObjectId(req.params.id) });
   await client.close();
   res.status(200).send(collection);
 });
@@ -376,7 +393,7 @@ app.get("/api/nosql/companies", async (req: Request, res: Response) => {
     .collection("Company")
     .find({})
     .skip((page - 1) * 10)
-    .limit(10)
+    // .limit(10)
     .toArray();
   await client.close();
   res.status(200).send(collection);
