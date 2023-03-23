@@ -23,8 +23,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const port = 8080;
-const client = new MongoClient(uri);
-
+// const client = new MongoClient(uri);
 const JobRepository: Repository<Job> = SQLDataSource.getRepository(Job);
 const CompanyRepository: Repository<Company> =
   SQLDataSource.getRepository(Company);
@@ -239,6 +238,7 @@ app.delete("/api/sql/jobs/:id", async (req: Request, res: Response) => {
 // ================Job================
 // Read All or Filter
 app.get("/api/nosql/jobs", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   const page = getPage(req.query.page);
   const job = queryToString(req.query.job) || "";
   const category = queryToString(req.query.category) || "";
@@ -263,6 +263,7 @@ app.get("/api/nosql/jobs", async (req: Request, res: Response) => {
 
 // Read by id
 app.get("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   await client.connect();
   const db = client.db(dbName);
   const collection = await db
@@ -274,6 +275,7 @@ app.get("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
 
 //Create Job
 app.post("/api/nosql/jobs", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   const body = req.body;
   await client.connect();
   await client.db(dbName).collection("Job").insertOne({
@@ -290,6 +292,7 @@ app.post("/api/nosql/jobs", async (req: Request, res: Response) => {
 
 //Update Job
 app.put("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   const body = req.body;
   console.log(body);
   await client.connect();
@@ -316,6 +319,7 @@ app.put("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
 
 //Delete Job
 app.delete("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   const body = req.body;
   await client.connect();
   await client
@@ -334,6 +338,7 @@ app.delete("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
 
 //Categories Read All
 app.get("/api/nosql/categories", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   const page = getPage(req.query.page);
   await client.connect();
   const db = client.db(dbName);
@@ -349,6 +354,7 @@ app.get("/api/nosql/categories", async (req: Request, res: Response) => {
 //
 //Read id Category
 app.get("/api/nosql/categories/:id", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   await client.connect();
   const db = client.db(dbName);
   const collection = await db
@@ -362,6 +368,7 @@ app.get("/api/nosql/categories/:id", async (req: Request, res: Response) => {
 
 //Company Read all
 app.get("/api/nosql/companies", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   const page = getPage(req.query.page);
   await client.connect();
   const db = client.db(dbName);
@@ -377,6 +384,7 @@ app.get("/api/nosql/companies", async (req: Request, res: Response) => {
 
 //Read id Company
 app.get("/api/nosql/companies/:id", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   await client.connect();
   const db = client.db(dbName);
   const collection = await db
@@ -388,6 +396,7 @@ app.get("/api/nosql/companies/:id", async (req: Request, res: Response) => {
 
 //Create Company
 app.post("/api/nosql/companies", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   const body = req.body;
   await client.connect();
   await client.db(dbName).collection("Company").insertOne({
@@ -405,6 +414,7 @@ app.post("/api/nosql/companies", async (req: Request, res: Response) => {
 
 //Update Company
 app.put("/api/nosql/companies/:id", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   const body = req.body;
   console.log(body);
   await client.connect();
@@ -431,6 +441,7 @@ app.put("/api/nosql/companies/:id", async (req: Request, res: Response) => {
 
 //Delete Company
 app.delete("/api/nosql/companies/:id", async (req: Request, res: Response) => {
+  const client = new MongoClient(uri);
   const body = req.body;
   await client.connect();
   await client
@@ -444,6 +455,7 @@ app.delete("/api/nosql/companies/:id", async (req: Request, res: Response) => {
     message: "Company is deleted",
   });
 });
+//
 
 app.use(express.static(path.join(__dirname, "./public")));
 app.get("*", (req: Request, res: Response) => {

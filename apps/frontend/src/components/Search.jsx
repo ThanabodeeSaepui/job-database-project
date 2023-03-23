@@ -118,7 +118,7 @@ const Search = (props) => {
                               variant="contained"
                               sx={{ m: 1 }}
                               onClick={() => {
-                                navigate(`/Description/${job.id}`);
+                                navigate(`/Description/${job._id}`);
                               }}
                             >
                               รายละเอียด
@@ -129,7 +129,7 @@ const Search = (props) => {
                               color="secondary"
                               sx={{ m: 1 }}
                               onClick={() => {
-                                navigate(`/EditJob/${job.id}`);
+                                navigate(`/EditJob/${job._id}`);
                               }}
                             >
                               แก้ไขข้อมูล
@@ -141,7 +141,7 @@ const Search = (props) => {
                               sx={{ m: 1 }}
                               onClick={() => {
                                 handleClickOpen();
-                                setJobDelete(job.id);
+                                setJobDelete(job._id);
                               }}
                             >
                               ลบข้อมูล
