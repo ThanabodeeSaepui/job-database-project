@@ -23,7 +23,7 @@ const EditCompany = () => {
   const { isLoading, data } = useQuery({
     queryFn: () => {
       return axios
-        .get(`http://localhost:8080/api/nosql/companies/${id}`)
+        .get(`https://job-db-prod-mongo.onrender.com/api/nosql/companies/${id}`)
         .then((res) => res.data);
     },
   });
@@ -52,7 +52,7 @@ const EditCompany = () => {
     });
     try {
       let res = await axios.put(
-        `http://localhost:8080/api/nosql/companies/${id}`,
+        `https://job-db-prod-mongo.onrender.com/api/nosql/companies/${id}`,
         data,
         {
           headers: {

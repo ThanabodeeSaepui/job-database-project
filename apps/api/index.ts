@@ -299,6 +299,8 @@ app.post("/api/nosql/jobs", async (req: Request, res: Response) => {
     job_name: body.job_name,
     job_description: body.job_description,
     avail_seat: body.avail_seat,
+    category: { category_name: body.category },
+    company: { company_name: body.company },
   });
   await client.close();
   res.status(200).send({
@@ -311,7 +313,6 @@ app.post("/api/nosql/jobs", async (req: Request, res: Response) => {
 app.put("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
   const client = new MongoClient(uri);
   const body = req.body;
-  console.log(body);
   await client.connect();
   await client
     .db(dbName)
@@ -320,10 +321,9 @@ app.put("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
       { _id: new ObjectId(req.params.id) },
       {
         $set: {
-          company_name: body.company_name,
-          address: body.address,
-          contact: body.contact,
-          description: body.description,
+          job_name: body.job_name,
+          job_description: body.job_description,
+          avail_seat: body.avail_seat,
         },
       }
     );
@@ -433,7 +433,6 @@ app.post("/api/nosql/companies", async (req: Request, res: Response) => {
 app.put("/api/nosql/companies/:id", async (req: Request, res: Response) => {
   const client = new MongoClient(uri);
   const body = req.body;
-  console.log(body);
   await client.connect();
   await client
     .db(dbName)
@@ -458,19 +457,36 @@ app.put("/api/nosql/companies/:id", async (req: Request, res: Response) => {
 
 //Delete Company
 app.delete("/api/nosql/companies/:id", async (req: Request, res: Response) => {
-  const client = new MongoClient(uri);
-  const body = req.body;
-  await client.connect();
-  await client
-    .db(dbName)
-    .collection("Company")
-    .deleteOne({
-      _id: new ObjectId(req.params.id),
-    });
+  try {
+    const client = new MongoClient(uri);
+    const body = req.body;
+    await client.connect();
+    const db = client.db(dbName);
+    const collection = await db
+      .collection("Company")
+      .findOne({ _id: new ObjectId(req.params.id) });
+    const company_name = collection?.company_name;
+    await client
+      .db(dbName)
+      .collection("Company")
+      .deleteOne({
+        _id: new ObjectId(req.params.id),
+      });
+    await client
+      .db(dbName)
+      .collection("Job")
+      .deleteMany({
+        company: { company_name: company_name },
+      });
+    await client.close();
   res.status(200).send({
     status: "ok",
-    message: "Company is deleted",
+    message: "Company and Job from this company are deleted",
   });
+  }  catch (error) {
+  res.send({status: "error",
+  message: "no"});
+  }
 });
 //
 

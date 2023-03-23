@@ -26,7 +26,7 @@ const EditJob = () => {
   const { isLoading, data } = useQuery({
     queryFn: () => {
       return axios
-        .get(`http://localhost:8080/api/nosql/jobs/${id}`)
+        .get(`https://job-db-prod-mongo.onrender.com/api/nosql/jobs/${id}`)
         .then((res) => res.data);
     },
   });
@@ -53,7 +53,7 @@ const EditJob = () => {
     });
     try {
       let res = await axios.put(
-        `http://localhost:8080/api/nosql/jobs/${id}`,
+        `https://job-db-prod-mongo.onrender.com/api/nosql/jobs/${id}`,
         data,
         {
           headers: {

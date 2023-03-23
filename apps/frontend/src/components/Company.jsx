@@ -22,7 +22,7 @@ const Company = () => {
   const { isLoading, data } = useQuery({
     queryFn: () => {
       return axios
-        .get(`http://localhost:8080/api/nosql/companies/${id}`)
+        .get(`https://job-db-prod-mongo.onrender.com/api/nosql/companies/${id}`)
         .then((res) => res.data);
     },
   });
@@ -45,7 +45,7 @@ const Company = () => {
 
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:8080/api/nosql/companies/${companyDelete}`)
+      .delete(`https://job-db-prod-mongo.onrender.com/api/nosql/companies/${companyDelete}`)
       .then(() => {
         setCompanyDelete(null);
         handleClose();
@@ -112,7 +112,7 @@ const Company = () => {
                 color="error"
                 onClick={() => {
                   handleClickOpen();
-                  setCompanyDelete(company?.id);
+                  setCompanyDelete(company?._id);
                 }}
               >
                 ลบข้อมูล

@@ -30,7 +30,7 @@ const Search = (props) => {
     queryFn: () => {
       return axios
         .get(
-          `http://localhost:8080/api/nosql/jobs?job=${location.state?.job.replace(
+          `https://job-db-prod-mongo.onrender.com/api/nosql/jobs?job=${location.state?.job.replace(
             " ",
             "_"
           )}&category=${location.state?.category.replace(
@@ -60,7 +60,7 @@ const Search = (props) => {
 
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:8080/api/nosql/jobs/${jobDelete}`)
+      .delete(`https://job-db-prod-mongo.onrender.com/api/nosql/jobs/${jobDelete}`)
       .then(() => {
         setJobDelete(null);
         handleClose();

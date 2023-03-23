@@ -33,7 +33,7 @@ const CreateCompany = () => {
     console.log(data);
     try {
       let res = await axios.post(
-        "http://localhost:8080/api/nosql/companies",
+        "https://job-db-prod-mongo.onrender.com/api/nosql/companies",
         data,
         {
           headers: {

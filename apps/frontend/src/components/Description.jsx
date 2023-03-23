@@ -20,7 +20,7 @@ const Description = () => {
   const { isLoading, data, refetch } = useQuery({
     queryFn: () => {
       return axios
-        .get(`http://localhost:8080/api/nosql/jobs/${id}`)
+        .get(`https://job-db-prod-mongo.onrender.com/api/nosql/jobs/${id}`)
         .then((res) => res.data);
     },
   });

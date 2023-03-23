@@ -18,7 +18,7 @@ const CreateJob = () => {
     queryKey: ["todos"],
     queryFn: () => {
       return axios
-        .get("http://localhost:8080/api/nosql/companies")
+        .get("https://job-db-prod-mongo.onrender.com/api/nosql/companies")
         .then((res) => {
           res.data.forEach((obj) => {
             obj.label = obj.company_name; // rename company_name to label
@@ -49,16 +49,17 @@ const CreateJob = () => {
     if (job_name === "") return;
     if (job_description === "") return;
     if (avail_seat === "") return;
+    if (category == "กรุณาเลือกประเภทงาน" || category == null) return
     const data = JSON.stringify({
       job_name: job_name,
       job_description: job_description,
       avail_seat: avail_seat,
-      category_id: category,
-      company_id: company,
+      category: category,
+      company: company,
     });
     console.log(data);
     try {
-      let res = await axios.post("http://localhost:8080/api/nosql/jobs", data, {
+      let res = await axios.post("https://job-db-prod-mongo.onrender.com/api/nosql/jobs", data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -111,10 +112,10 @@ const CreateJob = () => {
                     onChange={(e) => setCategory(e.target.value)}
                   >
                     <option selected>กรุณาเลือกประเภทงาน</option>
-                    <option value="217">Accounting</option>
-                    <option value="237">Civil Engineering</option>
-                    <option value="257">Electrical Engineering</option>
-                    <option value="263">Civil Computer Engineering</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Civil Computer Engineering">Civil Computer Engineering</option>
                   </select>
                 </div>
                 <div className="mb-3">
@@ -132,7 +133,7 @@ const CreateJob = () => {
                     id="combo-box-demo"
                     options={options}
                     sx={{ width: "100%" }}
-                    onChange={(e, value) => setCompany(value.id)}
+                    onChange={(e, value) => setCompany(value.label)}
                     renderInput={(params) => (
                       <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />
                     )}
