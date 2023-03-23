@@ -27,9 +27,7 @@ const EditJob = () => {
     queryFn: () => {
       return axios
         .get(`http://localhost:8080/api/sql/jobs/${id}`)
-        .then((res) => {
-          return res.data;
-        });
+        .then((res) => res.data);
     },
   });
 

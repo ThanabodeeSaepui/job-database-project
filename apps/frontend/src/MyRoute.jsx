@@ -5,7 +5,8 @@ import CreateJob from "./components/CreateJob";
 import Search from "./components/Search";
 import Description from "./components/Description";
 import Company from "./components/Company";
-import Edit from "./components/EditJob";
+import EditJob from "./components/EditJob";
+import EditCompany from "./components/EditCompany";
 
 const MyRoute = () => {
   return (
@@ -17,7 +18,8 @@ const MyRoute = () => {
         <Route path="/Search" element={<Search />} />
         <Route path="/Description/:id" element={<Description />} />
         <Route path="/Company/:id" element={<Company />} />
-        <Route path="/EditJob/:id" element={<Edit />} />
+        <Route path="/EditJob/:id" element={<EditJob />} />
+        <Route path="/EditCompany/:id" element={<EditCompany />} />
       </Routes>
     </BrowserRouter>
   );

@@ -90,6 +90,7 @@ app.post("/api/sql/companies", async (req: Request, res: Response) => {
 // Update
 app.put("/api/sql/companies/:id", async (req: Request, res: Response) => {
   const body = req.body;
+
   try {
     const result = await CompanyRepository.update(req.params.id, {
       company_name: body.company_name,

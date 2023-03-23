@@ -6,22 +6,18 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { redirect } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Company = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const [companyDelete, setCompanyDelete] = useState([]);
   const [open, setOpen] = useState(false);
-  const { id } = useParams();
   const [company, setCompany] = useState({});
   const { isLoading, data } = useQuery({
     queryFn: () => {
@@ -102,7 +98,7 @@ const Company = () => {
                 variant="contained"
                 color="secondary"
                 sx={{ mr: 3 }}
-                onClick={() => {}}
+                onClick={() => navigate(`/EditCompany/${id}`)}
               >
                 แก้ไขข้อมูล
               </Button>

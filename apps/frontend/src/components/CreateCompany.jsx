@@ -3,7 +3,6 @@ import "./style/bg.css";
 
 import Container from "@mui/material/Container";
 import { useState } from "react";
-// import { useQuery } from 'react-query'
 import axios from "axios";
 import { Alert } from "@mui/material";
 

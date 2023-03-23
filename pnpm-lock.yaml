@@ -72,7 +72,6 @@ importers:
       react-icon: ^1.0.0
       react-icons: ^4.8.0
       react-router-dom: ^6.9.0
-      rollup-plugin-preserve-directives: ^0.1.0
       vite: ^4.2.0
       vite-plugin-css-injected-by-js: ^3.1.0
     dependencies:
@@ -87,7 +86,6 @@ importers:
       react-router-dom: 6.9.0_biqbaboplfbrettd7655fr4n2y
     devDependencies:
       '@vitejs/plugin-react': 3.1.0_vite@4.2.0
-      rollup-plugin-preserve-directives: 0.1.0
       vite: 4.2.0
       vite-plugin-css-injected-by-js: 3.1.0_vite@4.2.0
 
@@ -2663,12 +2661,6 @@ packages:
     dependencies:
       glob: 7.2.3
     dev: false
-
-  /rollup-plugin-preserve-directives/0.1.0:
-    resolution: {integrity: sha512-fgzIK3hwF/afa6L1Qdsvshn0JlCHZRx0Sh9l0jjUgz3VK0unMFuEB4uqL3Vdae4OXkn+MBYCeNEN9vm81IteiA==}
-    peerDependencies:
-      rollup: 2.x || 3.x
-    dev: true
 
   /rollup/3.19.1:
     resolution: {integrity: sha512-lAbrdN7neYCg/8WaoWn/ckzCtz+jr70GFfYdlf50OF7387HTg+wiuiqJRFYawwSPpqfqDNYqK7smY/ks2iAudg==}

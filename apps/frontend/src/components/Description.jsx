@@ -12,8 +12,8 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 const Description = () => {
-  const navigate = useNavigate();
   let { id } = useParams();
+  const navigate = useNavigate();
   const [job, setJob] = useState({});
   const { isLoading, data } = useQuery({
     queryFn: () => {
