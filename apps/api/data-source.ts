@@ -13,7 +13,7 @@ export const SQLDataSource = new DataSource({
   database: env.PG_DB_NAME,
   // url: undefined || env.PG_DB_URL,
   entities: [Category, Job, Company],
-  synchronize: false, // !! change to false when production
+  synchronize: true, // !! change to false when production
   logging: false,
 });
 
