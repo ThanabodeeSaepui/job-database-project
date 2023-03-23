@@ -49,6 +49,7 @@ const CreateJob = () => {
     if (job_name === "") return;
     if (job_description === "") return;
     if (avail_seat === "") return;
+    if (category == null) return;
     const data = JSON.stringify({
       job_name: job_name,
       job_description: job_description,
