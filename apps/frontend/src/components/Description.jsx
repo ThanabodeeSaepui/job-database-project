@@ -39,17 +39,13 @@ const Description = () => {
       >
         <Card
           sx={{
-            mt: 2,
             border: 1,
             borderRadius: "16px",
+            lineHeight: 2.5,
           }}
         >
           <CardContent sx={{ m: 3 }}>
-            <Typography
-              variant="h4"
-              align="center"
-              style={{ marginBottom: 30 }}
-            >
+            <Typography variant="h4" align="center" sx={{ mb: 4 }}>
               <Link
                 underline="hover"
                 color="text.primary"
@@ -59,14 +55,22 @@ const Description = () => {
                 {job?.company?.company_name}
               </Link>
             </Typography>
-            <Typography variant="h5" component="p" style={{ marginBottom: 20 }}>
+            <Typography variant="h5" component="p" sx={{ mb: 4 }}>
               ตำแหน่ง : {job?.job_name}
             </Typography>
-            <Typography variant="h7" component="p" style={{ marginBottom: 5 }}>
+            <Typography variant="h7" component="p" sx={{ mb: 2 }}>
               จำนวนคนที่รับ : {job?.avail_seat}
             </Typography>
-            <Typography variant="h7" component="p">
-              รายละเอียด :{job?.job_description}
+            <Typography
+              variant="h7"
+              component="p"
+              sx={{
+                whiteSpace: "break-spaces",
+                mb: 2,
+              }}
+            >
+              รายละเอียด : {"\n"}
+              {job?.job_description}
             </Typography>
           </CardContent>
         </Card>

@@ -64,13 +64,9 @@ const Company = () => {
       >
         <Card
           sx={{
-            // minWidth: 275,
-            // maxWidth: 800,
-            // width: 600,
-            // height: 500,
-            mt: 2,
             border: 1,
             borderRadius: "16px",
+            lineHeight: 2.5,
           }}
         >
           <CardContent sx={{ m: 3 }}>
@@ -83,14 +79,22 @@ const Company = () => {
             >
               {company?.company_name}
             </Typography>
-            <Typography variant="h7" component="p" style={{ marginBottom: 5 }}>
+            <Typography variant="h7" component="p" sx={{ mb: 2 }}>
               ที่อยู่บริษัท : {company?.address}
             </Typography>
-            <Typography variant="h7" component="p">
+            <Typography variant="h7" component="p" sx={{ mb: 2 }}>
               ช่องทางการติดต่อ : {company?.contact}
             </Typography>
-            <Typography variant="h7" component="p" style={{ marginBottom: 30 }}>
-              รายละเอียด : {company?.description}
+            <Typography
+              variant="h7"
+              component="p"
+              sx={{
+                whiteSpace: "break-spaces",
+                mb: 2,
+              }}
+            >
+              รายละเอียด : {"\n"}
+              {company?.description}
             </Typography>
             <div align="center">
               <Button
