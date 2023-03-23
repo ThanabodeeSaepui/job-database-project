@@ -18,7 +18,7 @@ const CreateJob = () => {
     queryKey: ["todos"],
     queryFn: () => {
       return axios
-        .get("http://localhost:8080/api/sql/companies")
+        .get("https://job-db-prod.onrender.com/api/sql/companies")
         .then((res) => {
           res.data.forEach((obj) => {
             obj.label = obj.company_name; // rename company_name to label
@@ -58,11 +58,15 @@ const CreateJob = () => {
     });
     console.log(data);
     try {
-      let res = await axios.post("http://localhost:8080/api/sql/jobs", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let res = await axios.post(
+        "https://job-db-prod.onrender.com/api/sql/jobs",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (res.status === 200) {
         setJob_name("");
         setJob_description("");

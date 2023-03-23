@@ -18,7 +18,7 @@ const Description = () => {
   const { isLoading, data } = useQuery({
     queryFn: () => {
       return axios
-        .get(`http://localhost:8080/api/sql/jobs/${id}`)
+        .get(`https://job-db-prod.onrender.com/api/sql/jobs/${id}`)
         .then((res) => res.data);
     },
   });

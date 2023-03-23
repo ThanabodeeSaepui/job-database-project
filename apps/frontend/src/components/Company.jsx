@@ -22,7 +22,7 @@ const Company = () => {
   const { isLoading, data } = useQuery({
     queryFn: () => {
       return axios
-        .get(`http://localhost:8080/api/sql/companies/${id}`)
+        .get(`https://job-db-prod.onrender.com/api/sql/companies/${id}`)
         .then((res) => res.data);
     },
   });
@@ -45,7 +45,9 @@ const Company = () => {
 
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:8080/api/sql/companies/${companyDelete}`)
+      .delete(
+        `https://job-db-prod.onrender.com/api/sql/companies/${companyDelete}`
+      )
       .then(() => {
         setCompanyDelete(null);
         handleClose();
