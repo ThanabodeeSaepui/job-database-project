@@ -127,9 +127,6 @@ const Homepage = () => {
       >
         <Card
           sx={{
-            // minWidth: 275,
-            // maxWidth: 800,
-            // width: 600,
             height: 370,
             mt: 2,
             border: 1,
@@ -179,7 +176,7 @@ const Homepage = () => {
                   disablePortal
                   id="combo-box-demo"
                   options={options}
-                  sx={{ width: 300 }}
+                  sx={{ width: '100%' }}
                   onChange={(e, value) => setCompany(value.label)}
                   renderInput={(params) => (
                     <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />
