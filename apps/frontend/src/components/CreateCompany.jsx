@@ -33,7 +33,7 @@ const CreateCompany = () => {
     console.log(data);
     try {
       let res = await axios.post(
-        "http://localhost:8080/api/sql/companies",
+        "http://localhost:8080/api/nosql/companies",
         data,
         {
           headers: {

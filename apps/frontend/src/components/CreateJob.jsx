@@ -18,7 +18,7 @@ const CreateJob = () => {
     queryKey: ["todos"],
     queryFn: () => {
       return axios
-        .get("http://localhost:8080/api/sql/companies")
+        .get("http://localhost:8080/api/nosql/companies")
         .then((res) => {
           res.data.forEach((obj) => {
             obj.label = obj.company_name; // rename company_name to label
@@ -58,7 +58,7 @@ const CreateJob = () => {
     });
     console.log(data);
     try {
-      let res = await axios.post("http://localhost:8080/api/sql/jobs", data, {
+      let res = await axios.post("http://localhost:8080/api/nosql/jobs", data, {
         headers: {
           "Content-Type": "application/json",
         },

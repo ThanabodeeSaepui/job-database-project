@@ -30,7 +30,7 @@ const Search = (props) => {
     queryFn: () => {
       return axios
         .get(
-          `http://localhost:8080/api/sql/jobs?job=${location.state?.job.replace(
+          `http://localhost:8080/api/nosql/jobs?job=${location.state?.job.replace(
             " ",
             "_"
           )}&category=${location.state?.category.replace(
@@ -59,11 +59,13 @@ const Search = (props) => {
   };
 
   const handleDelete = () => {
-    axios.delete(`http://localhost:8080/api/sql/jobs/${jobDelete}`).then(() => {
-      setJobDelete(null);
-      handleClose();
-      refetch();
-    });
+    axios
+      .delete(`http://localhost:8080/api/nosql/jobs/${jobDelete}`)
+      .then(() => {
+        setJobDelete(null);
+        handleClose();
+        refetch();
+      });
   };
 
   return (

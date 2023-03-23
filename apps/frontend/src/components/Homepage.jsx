@@ -28,7 +28,7 @@ const Homepage = () => {
     queryKey: ["companies"],
     queryFn: () => {
       return axios
-        .get("http://localhost:8080/api/sql/companies")
+        .get("http://localhost:8080/api/nosql/companies")
         .then((res) => {
           res.data.forEach((obj) => {
             obj.label = obj.company_name; // rename company_name to label
