@@ -45,7 +45,9 @@ const Company = () => {
 
   const handleDelete = () => {
     axios
-      .delete(`https://job-db-prod-mongo.onrender.com/api/nosql/companies/${companyDelete}`)
+      .delete(
+        `https://job-db-prod-mongo.onrender.com/api/nosql/companies/${companyDelete}`
+      )
       .then(() => {
         setCompanyDelete(null);
         handleClose();

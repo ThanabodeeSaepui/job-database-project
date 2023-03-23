@@ -270,22 +270,21 @@ app.get("/api/nosql/jobs/:id", async (req: Request, res: Response) => {
     .collection("Job")
     .aggregate([
       {
-        $match:
-        {
-          _id: new ObjectId(req.params.id)
-        }
+        $match: {
+          _id: new ObjectId(req.params.id),
+        },
       },
-      { $lookup:
-         {
-           from: 'Company',
-           localField: 'company.company_name',
-           foreignField: 'company_name',
-           as: 'company'
-         }
-       }
-      ])
-      .toArray()
-    // .findOne({ _id: new ObjectId(req.params.id) });
+      {
+        $lookup: {
+          from: "Company",
+          localField: "company.company_name",
+          foreignField: "company_name",
+          as: "company",
+        },
+      },
+    ])
+    .toArray();
+  // .findOne({ _id: new ObjectId(req.params.id) });
   await client.close();
   res.status(200).send(collection);
 });
@@ -295,13 +294,16 @@ app.post("/api/nosql/jobs", async (req: Request, res: Response) => {
   const client = new MongoClient(uri);
   const body = req.body;
   await client.connect();
-  await client.db(dbName).collection("Job").insertOne({
-    job_name: body.job_name,
-    job_description: body.job_description,
-    avail_seat: body.avail_seat,
-    category: { category_name: body.category },
-    company: { company_name: body.company },
-  });
+  await client
+    .db(dbName)
+    .collection("Job")
+    .insertOne({
+      job_name: body.job_name,
+      job_description: body.job_description,
+      avail_seat: body.avail_seat,
+      category: { category_name: body.category },
+      company: { company_name: body.company },
+    });
   await client.close();
   res.status(200).send({
     status: "ok",
@@ -479,13 +481,12 @@ app.delete("/api/nosql/companies/:id", async (req: Request, res: Response) => {
         company: { company_name: company_name },
       });
     await client.close();
-  res.status(200).send({
-    status: "ok",
-    message: "Company and Job from this company are deleted",
-  });
-  }  catch (error) {
-  res.send({status: "error",
-  message: "no"});
+    res.status(200).send({
+      status: "ok",
+      message: "Company and Job from this company are deleted",
+    });
+  } catch (error) {
+    res.send({ status: "error", message: "no" });
   }
 });
 //

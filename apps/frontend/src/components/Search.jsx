@@ -60,7 +60,9 @@ const Search = (props) => {
 
   const handleDelete = () => {
     axios
-      .delete(`https://job-db-prod-mongo.onrender.com/api/nosql/jobs/${jobDelete}`)
+      .delete(
+        `https://job-db-prod-mongo.onrender.com/api/nosql/jobs/${jobDelete}`
+      )
       .then(() => {
         setJobDelete(null);
         handleClose();

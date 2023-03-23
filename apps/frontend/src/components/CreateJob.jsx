@@ -49,7 +49,7 @@ const CreateJob = () => {
     if (job_name === "") return;
     if (job_description === "") return;
     if (avail_seat === "") return;
-    if (category == "กรุณาเลือกประเภทงาน" || category == null) return
+    if (category == "กรุณาเลือกประเภทงาน" || category == null) return;
     const data = JSON.stringify({
       job_name: job_name,
       job_description: job_description,
@@ -59,11 +59,15 @@ const CreateJob = () => {
     });
     console.log(data);
     try {
-      let res = await axios.post("https://job-db-prod-mongo.onrender.com/api/nosql/jobs", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let res = await axios.post(
+        "https://job-db-prod-mongo.onrender.com/api/nosql/jobs",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (res.status === 200) {
         setJob_name("");
         setJob_description("");
@@ -114,8 +118,12 @@ const CreateJob = () => {
                     <option selected>กรุณาเลือกประเภทงาน</option>
                     <option value="Accounting">Accounting</option>
                     <option value="Civil Engineering">Civil Engineering</option>
-                    <option value="Electrical Engineering">Electrical Engineering</option>
-                    <option value="Civil Computer Engineering">Civil Computer Engineering</option>
+                    <option value="Electrical Engineering">
+                      Electrical Engineering
+                    </option>
+                    <option value="Civil Computer Engineering">
+                      Civil Computer Engineering
+                    </option>
                   </select>
                 </div>
                 <div className="mb-3">

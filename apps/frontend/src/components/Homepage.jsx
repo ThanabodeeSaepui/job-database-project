@@ -179,7 +179,7 @@ const Homepage = () => {
                   disablePortal
                   id="combo-box-demo"
                   options={options}
-                  sx={{ width: '100%' }}
+                  sx={{ width: "100%" }}
                   onChange={(e, value) => setCompany(value.label)}
                   renderInput={(params) => (
                     <TextField {...params} label="กรุณาเลือกบริษัทที่สนใจ" />
